@@ -1,0 +1,42 @@
+import random
+import time
+
+def main():
+    print("\n")
+
+    name = input("Name: ")
+    print("\n")
+    print("Hello, "+str(name)+".\n\nThis is a multiplication test.")
+    print("Complete the 20 equations as fast as you can.")
+    print("Your time will be displayed at the completion of this test.\n")
+
+    def time_convert(sec: int) -> None:
+        sec = sec % 60
+        print(int(sec), "seconds\n")
+
+    input("Press Enter to start\n")
+    start_time = time.time()
+
+    i = 0
+    for i in range(20):
+        num1 = random.randint(0,9)
+        num2 = random.randint(0,9)
+        while True:
+            print(num1, "x", num2, "=")
+            answer = input("")
+            if int(answer) == num1 * num2:
+                print("Correct\n")
+                break
+            elif int(answer) != num1 * num2:
+                print("Incorrect\n")
+
+    input("Press Enter to stop\n")
+    end_time = time.time()
+    timer = end_time - start_time
+
+    print("Well done " +str(name)+"!")
+    print("Your time was:")
+    time_convert(timer)
+
+if __name__ == "__main__":
+    main()

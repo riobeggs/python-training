@@ -1,0 +1,13 @@
+"""
+computer chooses  number
+user has to guess the number
+if the user guesses correct end the game
+if the user guesses incorrectly keep aaking user to guess the number until they guess correct
+"""
+
+import random
+
+def chosen_word():
+    wordchoice = ["Bake" , "Word" , "List" , "Four"	, "Five" , "Nine" , "Good" , "Best"	, "Cute" , "Zero" , "Huge" , "Cool" , "Tree" , "Race" , "Rice" , "Keep"	, "Lace" , "Beam" , "Game" , "Mars" , "Tide" , "Ride" , "Hide" , "Exit" , "Hope" , "Cold" , "From" , "Need" , "Stay" , "Come"].lower()
+    print(random.choice(wordchoice))
+
