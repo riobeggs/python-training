@@ -11,6 +11,7 @@ def main():
     print("Your time will be displayed at the completion of this test.\n")
 
     def time_convert(sec: int) -> None:
+        """ displays time."""
         sec = sec % 60
         print(int(sec), "seconds\n")
 
