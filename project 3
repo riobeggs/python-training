@@ -11,3 +11,16 @@ def chosen_word():
     wordchoice = ["Bake" , "Word" , "List" , "Four"	, "Five" , "Nine" , "Good" , "Best"	, "Cute" , "Zero" , "Huge" , "Cool" , "Tree" , "Race" , "Rice" , "Keep"	, "Lace" , "Beam" , "Game" , "Mars" , "Tide" , "Ride" , "Hide" , "Exit" , "Hope" , "Cold" , "From" , "Need" , "Stay" , "Come"].lower()
     print(random.choice(wordchoice))
 
+# Computer chooses a word to guess
+
+# Capture guess from user
+
+# process guess to find matches
+
+# Reveal matches to user
+
+# Check number of guesses from user
+
+    # if they guess correctly display you win
+    # if they have guesses, let them guess again, (repeat loop)
+    # if the number guesses is exceeded, print you lose
