@@ -33,7 +33,7 @@ def timer_start() -> float:
 
 # Quizzing loop
 def quiz() -> None:
-    for i in range(5):
+    for i in range(20):
         if i % 1 == 0:
             num1 = random.randint(0,9)
             num2 = random.randint(0,9)
