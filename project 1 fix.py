@@ -58,14 +58,6 @@ def timer_end() -> float:
 
 # displays time taken to finish the quiz
 def time_convert(sec: int) -> None:
-    # This method has a bug. This is an odd calculation.
-    # % acts like a remainder.
-    # example:
-    # 0 % 2 = 0 (remainder)
-    # 1 % 2 = 1 (remainder)
-    # 2 % 2 = 0 (remainder)
-    # 3 % 2 = 1 (remainder)
-    # ...
     sec = sec % 60
     print(int(sec), "seconds\n")
 
