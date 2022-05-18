@@ -7,9 +7,10 @@ I havent started working on the bug for the quiz loop yet and i'm not sure if iv
 done this correctly since i havent really worked with functions before.
 """
 
+
 import random
 import time
-
+aaaaaaaa ="hello"
 # Capture the users name
 def users_name():
     print("\n")
