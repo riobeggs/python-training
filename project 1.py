@@ -10,7 +10,6 @@ done this correctly since i havent really worked with functions before.
 
 import random
 import time
-aaaaaaaa ="hello"
 # Capture the users name
 def users_name():
     print("\n")
