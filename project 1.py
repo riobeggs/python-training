@@ -1,49 +1,54 @@
-# import random
-# import time
+import random
+import time
 
-# # Capture the users name
-# def users_name():
-#     print("\n")
-#     name = str(input("Name: "))
-#     return name
+# Capture the users name
+def users_name():
+    print("\n")
+    name = str(input("Name: "))
+    return name
 
-# # captures the amount of equations the user wishes to answer
-# # Find a way to prevent this from crashing if I dont enter a number
-# def user_equations():
-#     equations = int(input("Equations: "))
-#     return equations
+# greets user and asks for the amount of equations they wish to answer
+def greet_user(name):
+    print("\n")
+    print("Hello, "+(name.capitalize())+"! \n\nThis is a multiplication test.")
+    print("How many equations would you like to answer?\n")
 
-# # greets user and asks for the amount of equations they wish to answer
-# def greet_user(name):
-#     print("\n")
-#     print("Hello, "+str(name.capitalize())+"! \n\nThis is a multiplication test.")
-#     print("How many equations would you like to answer?\n")
+# captures the amount of equations the user wishes to answer
+def user_equations():
+    while True:
+            user_input = input("Equations: ")
+            equations = convert_to_int(user_input)
+            if equations == None or equations <=0:
+                    continue
+            elif equations == int(equations):
+                return equations
 
-# # lets the user know how many questions they will be answering and how the score is recorded
-# def amount_of_equations(equations):
-#     print("\nComplete the" , equations , "equations as fast as you can.")
-#     print("Your time will be displayed at the completion of this test.\n")
+# lets the user know how many questions they will be answering and how the score is recorded
+def amount_of_equations(equations):
+    print("\nComplete the" , equations , "equations as fast as you can.")
+    print("Your time will be displayed at the completion of this test.\n")
 
-# # starts the timer
-# def timer_start():
-#     input("Press Enter to start")
-#     print("\n")
-#     global start_time
-#     start_time = time.time()
-#     start_time = int(start_time)
+# starts the timer
+def timer_start():
+    input("Press Enter to start")
+    print("\n")
+    start_time = int(time.time())
+    return start_time
 
+#converts the users input to an integer
 def convert_to_int(input):
     converted = None
     try:
         converted = int(input)
         return converted
-    except:
-        print()
-        
-# def printer(x: str) -> None:
-#     x = x.upper()
-#     print(x)
-#     return x
+    except: 
+        pass
+
+#(havent used this function yet)      
+def printer(x: str) -> None:
+    x = x.upper()
+    print(x)
+    return x
 
 # Quizzing loop
 def quiz(equations):
@@ -53,40 +58,38 @@ def quiz(equations):
             num2 = random.randint(0,9)
         while True:
             print(num1, "x", num2, "=")
-            answer = input("")
-            if convert_to_int(answer) and (answer) == num1 * num2:
-                print("Correct\n")
-                break
-            else:
+            user_answer = input("")
+            answer = convert_to_int(user_answer)
+            if type(answer) == None:
                 print("Incorrect\n")
-            
-            
-# # stops the timer
-# def timer_end():
-#     input("Press Enter to stop\n")
-#     global end_time
-#     end_time = time.time()
-#     end_time = int(end_time)
+            elif answer != num1 * num2:
+                print("Incorrect\n")
+            else:
+                print ("Correct\n")
+                break
+                 
+# stops the timer
+def timer_end():
+    input("Press Enter to stop\n")
+    end_time = int(time.time())
+    return end_time
 
-# #displays and calculates the time taken to finish the quiz
-# def result_display(name):
-#     timer = end_time - start_time
-#     print("Well done " +str(name.capitalize())+"!")
-#     print("Your time was:\n")
-#     print(int(timer), "seconds\n")
+#displays and calculates the time taken to finish the quiz
+def result_display(name, end_time, start_time):
+    timer = end_time - start_time
+    print("Well done " +(name.capitalize())+"!")
+    print("Your time was:\n")
+    print (timer, "seconds\n")
 
-# def main():
+def main():
+    name = users_name()
+    greet_user(name)
+    equations = user_equations()
+    amount_of_equations(equations)
+    start_time = timer_start()
+    quiz(equations)
+    end_time = timer_end()
+    result_display(name, end_time, start_time,)
 
-    
-#     name = users_name()
-#     greet_user(name)
-#     equations = user_equations()
-#     amount_of_equations(equations)
-#     timer_start()
-#     quiz(equations)
-#     timer_end()
-#     result_display(name)
-
-
-# if __name__ == "__main__":
-#     main()
+if __name__ == "__main__":
+    main()
