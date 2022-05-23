@@ -24,10 +24,11 @@ def tree_structure(chosen_height):
   print("\nYou chose the height of:", chosen_height, "\n")
   for i in range(chosen_height):
     x = i+1
-    if i <= x:
+    for i in range(x):
+      if x == i:
+        continue    
+      else: 
         print("*", end="")
-    else:
-      continue
 
 
 def main():
