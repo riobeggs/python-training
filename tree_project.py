@@ -1,34 +1,32 @@
 # Create code to print trees
+def convert_to_int(input):
+    converted = None
+    try:
+        converted = int(input)
+        return converted
+    except: 
+        pass
 
-n=3
+def tree_height():
+  while True:
+    height = input("\nTree height: ") 
+    chosen_height = convert_to_int(height)
+    if chosen_height == None:
+      print("Please enter a number.")
+      continue
+    elif chosen_height <=0:
+      print("Please enter a positive number.")
+      continue
+    else:
+      return chosen_height
 
-/* Expected output
-*
-**
-***
-|
-*/
+def tree_structure(chosen_height):
+  print("\nYou chose the height of:", chosen_height, "\n")
 
-n=2
+def main():
+  chosen_height = tree_height()
+  tree_structure(chosen_height)
 
-/* Expected output
-*
-**
-|
-*/
+if __name__ == "__main__":
+  main()
 
-# If you want to make it more difficult, try build the following patterns
-
-/* centered example
-  *  
- ***
-*****
-  |
-*/
-
-/* Right hand example
-  *
- **
-***
-  |
-*/
