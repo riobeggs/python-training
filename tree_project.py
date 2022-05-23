@@ -16,3 +16,19 @@ n=2
 **
 |
 */
+
+# If you want to make it more difficult, try build the following patterns
+
+/* centered example
+  *  
+ ***
+*****
+  |
+*/
+
+/* Right hand example
+  *
+ **
+***
+  |
+*/
