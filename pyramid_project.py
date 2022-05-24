@@ -3,10 +3,10 @@ def convert_to_int(input):
     converted = None
     try:
         converted = int(input)
-        return converted
     except: 
         pass
 
+    return converted
 #gets the users input for the height of the pyramid and returns it
 #loops until input is an integer bigger than 0
 def pyramid_height():
