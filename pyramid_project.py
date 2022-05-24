@@ -32,8 +32,10 @@ def pyramid_structure(chosen_height):
   print("\n")
   for i in range(chosen_height):
     x = i + 1  
-    print(" "*(chosen_height-x), end = "")
-    print("*"*((2*i)+1))
+    spaces = " " * (chosen_height - x)
+    astericies = "*" * ((2 * i) + 1)
+    print(spaces, end="")
+    print(astericies)
 
   print("\n")
 
