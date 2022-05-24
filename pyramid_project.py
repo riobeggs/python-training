@@ -31,12 +31,10 @@ def get_pyramid_height():
 def pyramid_structure(chosen_height):
   print("\n")
   for i in range(chosen_height):
-    x = i+1  
-    for y in range(chosen_height-x):
-      print(" ", end="")
-    for z in range((2*i)+1):
-      print("*", end="")
-    print("")
+    x = i + 1  
+    print(" "*(chosen_height-x), end = "")
+    print("*"*((2*i)+1))
+
   print("\n")
 
 
