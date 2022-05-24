@@ -7,32 +7,33 @@ def convert_to_int(input):
     except: 
         pass
 
-def tree_height():
+def pyramid_height():
   while True:
-    height = input("\nTree height: ") 
+    height = input("\nPyramid height: ") 
     chosen_height = convert_to_int(height)
     if chosen_height == None:
-      print("Please enter a number.")
+      print("Please enter a number")
       continue
     elif chosen_height <=0:
-      print("Please enter a positive number.")
+      print("Please enter a positive number")
       continue
     else:
       return chosen_height
 
-def tree_structure(chosen_height):
-  print("\nYou chose the height of:", chosen_height, "\n")
+def pyramid_structure(chosen_height):
+  print("\n")
   for i in range(chosen_height):
     x = i+1  
-    for y in range(chosen_height - x):
+    for y in range(chosen_height-x):
       print(" ", end="")
-    for z in range(x):
+    for z in range((2*i)+1):
       print("*", end="")
     print("")
+  print("\n")
 
 def main():
-  chosen_height = tree_height()
-  tree_structure(chosen_height)
+  chosen_height = pyramid_height()
+  pyramid_structure(chosen_height)
 if __name__ == "__main__":
   main()
 
