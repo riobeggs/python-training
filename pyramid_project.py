@@ -30,12 +30,10 @@ def get_pyramid_height():
 #prints the structure of the pyramid for the given height
 def pyramid_structure(chosen_height):
   print("\n")
-  for i in range(chosen_height):
-    x = i + 1  
-    spaces = " " * (chosen_height - x)
-    astericies = "*" * ((2 * i) + 1)
-    print(spaces, end="")
-    print(astericies)
+  for i in range(1, chosen_height + 1):
+    spaces = " " * (chosen_height - i)
+    astericies = "*" * ((2 * i) - 1)
+    print(spaces + astericies)
 
   print("\n")
 
