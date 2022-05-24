@@ -7,6 +7,8 @@ def convert_to_int(input):
         pass
 
     return converted
+
+
 #gets the users input for the height of the pyramid and returns it
 #loops until input is an integer bigger than 0
 def pyramid_height():
@@ -22,6 +24,7 @@ def pyramid_height():
     else:
       return chosen_height
 
+
 #prints the structure of the pyramid for the given height
 def pyramid_structure(chosen_height):
   print("\n")
@@ -34,10 +37,12 @@ def pyramid_structure(chosen_height):
     print("")
   print("\n")
 
+
 #calls functions
 def main():
   chosen_height = pyramid_height()
   pyramid_structure(chosen_height)
+
 
 #excecutes main()
 if __name__ == "__main__":
