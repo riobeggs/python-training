@@ -42,45 +42,47 @@ def get_users_guess():
     return convert_to_int(guess)
 
 
+def hinter(guess, answer):
+    if guess < answer:
+        print("Your guess is too low")
+        
+    if guess > answer:
+        print("Your guess is too high")
+
+    if guess == answer:
+        return guess
+        # #TODO find a way to break 
+
+
+def valid_guess(i):
+    is_valid = False
+    while is_valid == False:
+        guesses_left(i)
+        guess = get_users_guess()
+        if guess != None:
+            is_valid = True
+    return guess
+
+
 def guesses_left(i): 
-    print("\n")
-    print(3 - i, "guesses remaining")
+    if 3 - i != 1:
+        print("\n")
+        print(3 - i, "guesses remaining")
+    
+    if 3 - i == 1:
+        print("\n")
+        print("1 guess remaining")
 
 
 def run_game():
     answer = random_number()
 
     for i in range(3):
-        if 3 - i == 1:
-            #TODO create a function for the valid loop
-            is_valid = False
-            while is_valid == False:
-                print("\n")
-                print("1 guess remaining")
-                guess = get_users_guess()
-                if guess != None:
-                    is_valid = True
-            results(guess, answer)
-            break
+        guess = valid_guess(i)
+        hinter(guess, answer)
 
-        #TODO create a function for the valid loop
-        is_valid = False
-        while is_valid == False:
-            guesses_left(i)
-            guess = get_users_guess()
-            if guess != None:
-                is_valid = True
+    results(guess, answer)
 
-        #TODO create a function for the hinter
-        if guess < answer:
-            print("Your guess is too low")
-            
-        if guess > answer:
-            print("Your guess is too high")
-
-        if guess == answer:
-            results(guess, answer)
-            break
 
 
 def results(guess, answer):
