@@ -17,6 +17,11 @@ user guesses 3
 "Correct"
 """
 
+def intro():
+    print("\n\nI am thinking of a number between 1 and 9.")
+    print("You have 3 attempts to guess my number.")
+
+
 def convert_to_int(input):
   converted = None
   try:
@@ -28,7 +33,7 @@ def convert_to_int(input):
 
 
 def random_number():
-    answer = random.randint(1,11)
+    answer = random.randint(1,9)
     return answer
 
 
@@ -36,28 +41,61 @@ def get_users_guess():
     guess = input("guess: ")
     return convert_to_int(guess)
 
-def run():
+
+def guesses_left(i): 
+    print("\n")
+    print(3 - i, "guesses remaining")
+
+
+def run_game():
     answer = random_number()
+
     for i in range(3):
-        # capture guess
+        if 3 - i == 1:
+            #TODO create a function for the valid loop
+            is_valid = False
+            while is_valid == False:
+                print("\n")
+                print("1 guess remaining")
+                guess = get_users_guess()
+                if guess != None:
+                    is_valid = True
+            results(guess, answer)
+            break
+
+        #TODO create a function for the valid loop
         is_valid = False
         while is_valid == False:
+            guesses_left(i)
             guess = get_users_guess()
             if guess != None:
                 is_valid = True
 
-        # process guess
+        #TODO create a function for the hinter
         if guess < answer:
             print("Your guess is too low")
-        
+            
         if guess > answer:
             print("Your guess is too high")
 
         if guess == answer:
-            print("You win")
+            results(guess, answer)
             break
 
 
-run()
+def results(guess, answer):
+    if guess == answer:
+        print("\nYou win!")
+        print("The number was:", answer, "\n\n")
+    else:
+        print("\nYou lose!")
+        print("The number was:", answer, "\n\n")
 
 
+def main():
+    intro()
+    run_game()
+
+
+if __name__ == "__main__":
+    main()
