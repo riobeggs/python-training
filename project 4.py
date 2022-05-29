@@ -1,9 +1,18 @@
+
+#TODO end program if the user inputs "exit"
+
+#TODO for cleaner reading: if the users input is a number that does not require
+    #TODO a decimal point (e.g, 5.0), dont display the decimal point.
+
+
 import operator
 
-ops = {"+" : operator.add,
-       "-" : operator.sub,
-       "x" : operator.mul,
-       "/" : operator.truediv}
+def operator_dict():
+    ops = {"+" : operator.add,
+        "-" : operator.sub,
+        "x" : operator.mul,
+        "/" : operator.truediv}
+    return ops
 
 
 def instructions():
@@ -39,7 +48,7 @@ def get_first_number():
 def get_operator():
     while True:
         operator = input("Operator: ")
-
+        ops = operator_dict()
         if operator not in ops:
             continue
 
@@ -59,17 +68,9 @@ def get_second_number():
 
 
 def calculate_answer(num1, operator, num2):
-    if operator == "+":
-        print(num1, "+", num2, "=", num1 + num2, "\n\n")
+    ops = operator_dict()
+    print(num1, operator, num2, "=", ops[operator](num1,num2), "\n\n")      
 
-    if operator == "-":
-        print(num1, "-", num2, "=", num1 - num2, "\n\n")
-
-    if operator == "x":
-        print(num1, "x", num2, "=", num1 * num2, "\n\n")
-
-    if operator == "/":
-        print(num1, "/", num2, "=", num1 / num2, "\n\n")       
 
 def run_calculator():
     instructions()
