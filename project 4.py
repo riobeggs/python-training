@@ -1,8 +1,16 @@
+import operator
+
+ops = {"+" : operator.add,
+       "-" : operator.sub,
+       "x" : operator.mul,
+       "/" : operator.truediv}
+
+
 def instructions():
     print("\n\nYou may use this calculator as many times as you like.")
     print("To exit the calculator, type 'exit', then press enter.")
     print("\nAdd using the '+' key.")
-    print("Minus using the '-' key.")
+    print("Subtract using the '-' key.")
     print("Multiply using the 'x' key.")
     print("Divide using the '/' key.\n")
 
@@ -30,10 +38,9 @@ def get_first_number():
 
 def get_operator():
     while True:
-        available_operators = ["+" , "-" , "x" , "/"]
         operator = input("Operator: ")
 
-        if operator not in available_operators:
+        if operator not in ops:
             continue
 
         return operator
