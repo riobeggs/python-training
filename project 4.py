@@ -1,11 +1,6 @@
-
-#TODO end program if the user inputs "exit"
-
-#TODO for cleaner reading: if the users input is a number that does not require
-    #TODO a decimal point (e.g, 5.0), dont display the decimal point.
-
-
+import sys
 import operator
+
 
 def operator_dict():
     ops = {"+" : operator.add,
@@ -17,14 +12,14 @@ def operator_dict():
 
 def instructions():
     print("\n\nYou may use this calculator as many times as you like.")
-    print("To exit the calculator, type 'exit', then press enter.")
+    print("To exit the calculator, type 'quit', then press enter.")
     print("\nAdd using the '+' key.")
     print("Subtract using the '-' key.")
     print("Multiply using the 'x' key.")
     print("Divide using the '/' key.\n")
 
 
-def convert_to_float(equation):
+def convert_to_int(equation):
   converted = None
   try:
       converted = float(equation)
@@ -37,7 +32,11 @@ def convert_to_float(equation):
 def get_first_number():
     while True:
         num1 = input("First number: ")
-        converted_num1 = convert_to_float(num1)
+
+        if num1 == "quit":
+            sys.exit(0)
+
+        converted_num1 = convert_to_int(num1)
 
         if converted_num1 == None:
             continue
@@ -48,6 +47,10 @@ def get_first_number():
 def get_operator():
     while True:
         operator = input("Operator: ")
+
+        if operator == "quit":
+            sys.exit(0)
+
         ops = operator_dict()
         if operator not in ops:
             continue
@@ -58,8 +61,13 @@ def get_operator():
 def get_second_number():
     while True:
         num2 = input("Second number: ")
+
+        if num2 == "quit":
+            sys.exit(0)
+
         print("\n")
-        converted_num2 = convert_to_float(num2)
+
+        converted_num2 = convert_to_int(num2)
 
         if converted_num2 == None:
             continue
@@ -74,10 +82,11 @@ def calculate_answer(num1, operator, num2):
 
 def run_calculator():
     instructions()
-    num1 = get_first_number()
-    operator = get_operator()
-    num2 = get_second_number()
-    calculate_answer(num1, operator, num2)
+    while True:
+        num1 = get_first_number()
+        operator = get_operator()
+        num2 = get_second_number()
+        calculate_answer(num1, operator, num2)
 
 
 run_calculator()
