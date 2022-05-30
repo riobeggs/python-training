@@ -36,8 +36,8 @@ def convert_to_int(equation):
     return converted
 
 
-# gets the users input for the first number in the equation
-def get_first_number():
+# gets the users input for a number in the equation
+def get_number():
     while True:
         num1 = input("First number: ")
 
@@ -74,26 +74,6 @@ def get_operator():
         return operator
 
 
-# gets the users input for the second number in the equation
-def get_second_number():
-    while True:
-        num2 = input("Second number: ")
-
-        # quits program if they enter 'quit'
-        if num2 == "quit":
-            sys.exit(0)
-
-        print("\n")
-
-        converted_num2 = convert_to_int(num2)
-        
-        # if the users input is not a float start loop again (ask for input)
-        if converted_num2 == None:
-            continue
-
-        return converted_num2
-
-
 # prints and calculates the answer to the users equation
 def calculate_answer(num1, operator, num2):
     ops = operator_dict()
@@ -106,9 +86,9 @@ def run_calculator():
     instructions()
     while True:
         # forever repeats the calculator until the user enters 'exit'
-        num1 = get_first_number()
+        num1 = get_number()
         operator = get_operator()
-        num2 = get_second_number()
+        num2 = get_number()
         calculate_answer(num1, operator, num2)
 
 
