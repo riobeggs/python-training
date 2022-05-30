@@ -37,14 +37,19 @@ def convert_to_int(equation):
     return converted
 
 
+def exit():
+    print("Quitting...")
+    sys.exit(0)
+
+
 # gets the users input for a number in the equation
-def get_number():
+def get_number(question_prefix: str):
     while True:
-        num1 = input("First number: ")
+        num1 = input(f"{question_prefix} number: ")
 
         # quits program if they enter 'quit'
         if num1 == "quit":
-            sys.exit(0)
+            exit()
 
         converted_num1 = convert_to_int(num1)
 
@@ -62,7 +67,7 @@ def get_operator():
 
         # quits program if they enter 'quit'
         if operator == "quit":
-            sys.exit(0)
+            exit()
 
         ops = operator_dict()
         
@@ -87,9 +92,9 @@ def run_calculator():
     instructions()
     while True:
         # forever repeats the calculator until the user enters 'exit'
-        num1 = get_number()
+        num1 = get_number("First")
         operator = get_operator()
-        num2 = get_number()
+        num2 = get_number("Second")
         calculate_answer(num1, operator, num2)
 
 
