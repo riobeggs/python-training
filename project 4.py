@@ -2,6 +2,7 @@ import sys
 import operator
 
 
+# Constants
 QUIT = "quit"
 OPERATIONS = {"+" : operator.add,
         "-" : operator.sub,
@@ -11,10 +12,12 @@ OPERATIONS = {"+" : operator.add,
 
 
 def print_introduction():
+    """Print an introduction teaching users how to use the calculator."""
     print("\n\nYou may use this calculator as many times as you like.")
+    # shows how to exit program
     print("To exit the calculator, type 'quit', then press enter.")
     print()
-    # shows how to exit program
+    
     print_instructions()
     print()
 
@@ -41,11 +44,13 @@ def convert_to_float(number: str):
 
 
 def exit():
+    """Handles exiting of the calculator."""
     print("Quitting...")
     sys.exit(0)
 
 
 def is_quit(user_input: str) -> bool:
+    """Checks if a user has attempted to quit."""
     formatted = user_input.lower().strip()
     return formatted == QUIT
 
@@ -105,5 +110,6 @@ def run_calculator():
         calculate_answer(num1, operator, num2)
 
 
-# excecutes the program
-run_calculator()
+if __name__ == "__main__":
+    # excecutes the program
+    run_calculator()
