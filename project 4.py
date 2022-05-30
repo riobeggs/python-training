@@ -25,7 +25,7 @@ def instructions():
 
 
 # trys to convert the users input to a float
-def convert_to_int(equation):
+def convert_to_float(equation):
     converted = None
     # if the input cant be converted to a float then it returns as None
     try:
@@ -45,19 +45,19 @@ def exit():
 # gets the users input for a number in the equation
 def get_number(question_prefix: str):
     while True:
-        num1 = input(f"{question_prefix} number: ")
+        num = input(f"{question_prefix} number: ")
 
         # quits program if they enter 'quit'
-        if num1 == "quit":
+        if num == "quit":
             exit()
 
-        converted_num1 = convert_to_int(num1)
+        converted_num = convert_to_float(num)
 
         # if the users input is not a float start loop again (ask for input)
-        if converted_num1 == None:
+        if converted_num == None:
             continue
 
-        return converted_num1
+        return converted_num
 
 
 # gets the users input for the operator that want to use
