@@ -3,17 +3,11 @@ import operator
 
 
 QUIT = "quit"
-
-
-# function for storing properties of operators in a dictionary 
-def operator_dict():
-    # also associates operators with the users input and variables
-    ops = {"+" : operator.add,
+OPERATIONS = {"+" : operator.add,
         "-" : operator.sub,
         "x" : operator.mul,
         "*" : operator.mul,
         "/" : operator.truediv}
-    return ops
 
 
 # gives the user instructions on how to use the calculator
@@ -77,13 +71,11 @@ def get_operator():
         # quits program if they enter 'quit'
         if is_quit(operator):
             exit()
-
-        ops = operator_dict()
         
         # if the chosen operator is not a real operator
         # and is not in the available operators created in the operator dictionary
         # then ask for the users input again
-        if operator not in ops:
+        if operator not in OPERATIONS:
             continue
 
         return operator
@@ -91,8 +83,7 @@ def get_operator():
 
 # prints and calculates the answer to the users equation
 def calculate_answer(num1, operator, num2):
-    ops = operator_dict()
-    print(num1, operator, num2, "=", ops[operator](num1,num2), "\n\n")      
+    print(num1, operator, num2, "=", OPERATIONS[operator](num1,num2), "\n\n")      
 
 
 # calls functions that compile the program
