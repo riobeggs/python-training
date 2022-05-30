@@ -1,6 +1,10 @@
 import sys
 import operator
 
+
+QUIT = "quit"
+
+
 # function for storing properties of operators in a dictionary 
 def operator_dict():
     # also associates operators with the users input and variables
@@ -42,13 +46,18 @@ def exit():
     sys.exit(0)
 
 
+def is_quit(user_input: str) -> bool:
+    formatted = user_input.lower().strip()
+    return formatted == QUIT
+
+
 # gets the users input for a number in the equation
 def get_number(question_prefix: str):
     while True:
         num = input(f"{question_prefix} number: ")
 
         # quits program if they enter 'quit'
-        if num == "quit":
+        if is_quit(num):
             exit()
 
         converted_num = convert_to_float(num)
@@ -66,7 +75,7 @@ def get_operator():
         operator = input("Operator: ")
 
         # quits program if they enter 'quit'
-        if operator == "quit":
+        if is_quit(operator):
             exit()
 
         ops = operator_dict()
