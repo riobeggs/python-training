@@ -25,14 +25,14 @@ def instructions():
 
 
 # trys to convert the users input to a float
-def convert_to_float(equation):
+def convert_to_float(number: str):
     converted = None
     # if the input cant be converted to a float then it returns as None
     try:
-        converted = float(equation)
+        converted = float(number)
         # retuns as float if it can be converted to a float
     except: 
-        pass
+        print(f"Could not convert '{number}' to a float")
 
     return converted
 
