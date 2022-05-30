@@ -7,6 +7,7 @@ def operator_dict():
     ops = {"+" : operator.add,
         "-" : operator.sub,
         "x" : operator.mul,
+        "*" : operator.mul,
         "/" : operator.truediv}
     return ops
 
