@@ -10,16 +10,21 @@ OPERATIONS = {"+" : operator.add,
         "/" : operator.truediv}
 
 
-# gives the user instructions on how to use the calculator
-def instructions():
+def print_introduction():
     print("\n\nYou may use this calculator as many times as you like.")
-    # shows how to exit program
     print("To exit the calculator, type 'quit', then press enter.")
+    print()
+    # shows how to exit program
+    print_instructions()
+    print()
+
+# gives the user instructions on how to use the calculator
+def print_instructions():
     # gives the user the operators available to use
-    print("\nAdd using the '+' key.")
+    print("Add using the '+' key.")
     print("Subtract using the '-' key.")
     print("Multiply using the 'x' key.")
-    print("Divide using the '/' key.\n")
+    print("Divide using the '/' key.")
 
 
 # trys to convert the users input to a float
@@ -76,6 +81,8 @@ def get_operator():
         # and is not in the available operators created in the operator dictionary
         # then ask for the users input again
         if operator not in OPERATIONS:
+            print(f"ERROR: '{operator}'  is an invalid operator")
+            print_instructions()
             continue
 
         return operator
@@ -89,7 +96,7 @@ def calculate_answer(num1, operator, num2):
 # calls functions that compile the program
 def run_calculator():
     # excecutes instructions function
-    instructions()
+    print_introduction()
     while True:
         # forever repeats the calculator until the user enters 'exit'
         num1 = get_number("First")
