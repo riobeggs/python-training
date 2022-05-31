@@ -5,8 +5,6 @@ def example1():
             self.name = "rio"
             self.age = 18
 
-            
-
     bob = Person()
     print(bob.name)
     bob.name = "name"
@@ -17,7 +15,7 @@ def example1():
 
 def example2():
     class Person:
-        def __init__(self,  age=None, name=None):
+        def __init__(self, age=None, name=None):
             print("person.init")
             if name == None:
                 name = "default"
@@ -39,7 +37,7 @@ def example2():
 
 def example3():
     class Person:
-        def __init__(self,  age=None, name=None):
+        def __init__(self, age=None, name=None):
             print("person.init")
             if name == None:
                 name = "default"
@@ -56,9 +54,8 @@ def example3():
             # str is called when string representation of a person object is requested
             # offers up string representation of a Person object
 
-        
         def greet(self):
-            return("Person.greet")
+            return "Person.greet"
             #
 
     alice = Person(name="alice", age=30)
@@ -71,7 +68,6 @@ def example3():
 
     carl = Person()
     print(carl)
-    
 
 
 example3()
