@@ -4,11 +4,13 @@ import operator
 
 # Constants
 QUIT = "quit"
-OPERATIONS = {"+" : operator.add,
-        "-" : operator.sub,
-        "x" : operator.mul,
-        "*" : operator.mul,
-        "/" : operator.truediv}
+OPERATIONS = {
+    "+": operator.add,
+    "-": operator.sub,
+    "x": operator.mul,
+    "*": operator.mul,
+    "/": operator.truediv,
+}
 
 
 def print_introduction():
@@ -17,9 +19,10 @@ def print_introduction():
     # shows how to exit program
     print("To exit the calculator, type 'quit', then press enter.")
     print()
-    
+
     print_instructions()
     print()
+
 
 # gives the user instructions on how to use the calculator
 def print_instructions():
@@ -37,7 +40,7 @@ def convert_to_float(number: str):
     try:
         converted = float(number)
         # retuns as float if it can be converted to a float
-    except: 
+    except:
         print(f"Could not convert '{number}' to a float")
 
     return converted
@@ -81,7 +84,7 @@ def get_operator():
         # quits program if they enter 'quit'
         if is_quit(operator):
             exit()
-        
+
         # if the chosen operator is not a real operator
         # and is not in the available operators created in the operator dictionary
         # then ask for the users input again
@@ -95,7 +98,7 @@ def get_operator():
 
 # prints and calculates the answer to the users equation
 def calculate_answer(num1, operator, num2):
-    print(num1, operator, num2, "=", OPERATIONS[operator](num1,num2), "\n\n")      
+    print(num1, operator, num2, "=", OPERATIONS[operator](num1, num2), "\n\n")
 
 
 # calls functions that compile the program

@@ -16,8 +16,8 @@ def example_1() -> None:
     print("Example 1")
 
     numbered_list = [1, 2, 3]
-    string_list = ['a', 'b', 'c']
-    mixed_list = [1, 'a', 2, 'b']
+    string_list = ["a", "b", "c"]
+    mixed_list = [1, "a", 2, "b"]
     range_list = list(range(10))
 
     print(f"numbered_list: {numbered_list}")
@@ -32,7 +32,7 @@ def example_2() -> None:
     """Iterate (cycle) through a list."""
     print("Example 2")
 
-    mixed_list = [1, 'a', 2, 'b']
+    mixed_list = [1, "a", 2, "b"]
 
     print(f"mixed_list: {mixed_list}")
 
@@ -49,7 +49,7 @@ def example_3() -> None:
     """
     print("Example 3")
 
-    mixed_list = [1, 'a', 2, 'b']
+    mixed_list = [1, "a", 2, "b"]
 
     print(f"mixed_list: {mixed_list}")
 
@@ -58,7 +58,7 @@ def example_3() -> None:
             # Go to next value in mixed list (break)
             # Stop excuting this iteration of the loop.
             continue
-        
+
         print(f"value: {value}")
 
     print()
@@ -87,7 +87,6 @@ def example_5() -> None:
     print("Example 5")
     numbered_list = [1, 2, 3]
     print(f"numbered_list: {numbered_list}")
-
 
     for i in range(3):
         print(f"index {i}: {numbered_list[i]}")
@@ -123,13 +122,12 @@ def example_7() -> None:
     # We want to remove the 3
     # 3 sits at index 2. Coders count from 0.
     # We forget this and try to remove the 3 from the 3rd value in the list.
-    index = 3 # This is a mistake!
+    index = 3  # This is a mistake!
     try:
         value = numbered_list[index]
     except IndexError as ie:
         # except prevents code from stopping
         print(f"exception: {ie}")
-
 
     try:
         numbered_list.pop(index)
@@ -163,13 +161,13 @@ def example_8() -> None:
     same_check = copy_list is numbered_list
     print(f"copy_list is numbered_list: {same_check}")
     print(SEPARATOR)
-    
+
     # Changes to either list affect them both. They point at the same object
     # in memory.
     print("Append 4 to copy_list")
     copy_list.append(4)
     print(SEPARATOR)
-    
+
     print(f"modified numbered_list: {numbered_list}")
     print(f"modified copy_list: {copy_list}")
 
@@ -272,9 +270,9 @@ def example_11():
     """
     print("Example 11")
 
-    list_a = [1, 2, 3] # a's list
-    list_b = [1, 2, 3] # b's list
-    list_c = list_a # a's list (called list_a and list_c)
+    list_a = [1, 2, 3]  # a's list
+    list_b = [1, 2, 3]  # b's list
+    list_c = list_a  # a's list (called list_a and list_c)
 
     print("Current lists")
     print(f"list_a: {list_a}")

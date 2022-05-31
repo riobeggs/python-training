@@ -10,7 +10,7 @@ import random
 
 # computer chooses a random number and returns it
 def random_number():
-    answer = random.randint(1,9)
+    answer = random.randint(1, 9)
     return answer
 
 
@@ -22,21 +22,21 @@ def intro():
 
 # converts the users input to an integer and returns it
 def convert_to_int(input):
-  converted = None
-  try:
-      converted = int(input)
-  except: 
-      pass
+    converted = None
+    try:
+        converted = int(input)
+    except:
+        pass
     # if the input can not be converted to an integer then it converts it to a None and returns it
-  return converted
+    return converted
 
 
 # lets the user know how many guesses they have left
-def guesses_left(i): 
+def guesses_left(i):
     if 3 - i != 1:
         print("\n")
         print(3 - i, "guesses remaining")
-    
+
     if 3 - i == 1:
         print("\n")
         print("1 guess remaining")
@@ -50,7 +50,7 @@ def get_users_guess():
 
 # checks if the users guess is valid/ is an integer and returns it
 def valid_guess(i):
-    # if the users guess is not valid/ is a None, then: 
+    # if the users guess is not valid/ is a None, then:
     is_valid = False
     while is_valid == False:
         # it does not take away from the amount of guesses they have
@@ -66,7 +66,7 @@ def valid_guess(i):
 def hinter(guess, answer):
     if guess < answer:
         print("Your guess is too low")
-        
+
     if guess > answer:
         print("Your guess is too high")
 
@@ -92,7 +92,7 @@ def run_game():
         hinter(guess, answer)
         if guess == answer:
             break
-    
+
     results(guess, answer)
 
 
