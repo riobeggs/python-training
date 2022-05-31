@@ -9,7 +9,7 @@ done this correctly since i havent really worked with functions before.
 
 import random
 import time
-    
+
 # Capture the users name
 def users_name() -> str:
     print("\n")
@@ -18,12 +18,14 @@ def users_name() -> str:
 
     return name
 
+
 # greets user and asks for the amount of equations they wish to answer
 def greet_user(name: str) -> None:
     print("\n")
-    print("Hello, "+str(name)+".\n\nThis is a multiplication test.")
+    print("Hello, " + str(name) + ".\n\nThis is a multiplication test.")
     print("Complete the 20 equations as fast as you can.")
     print("Your time will be displayed at the completion of this test.\n")
+
 
 # starts the timer
 def timer_start() -> float:
@@ -31,12 +33,13 @@ def timer_start() -> float:
     start_time = time.time()
     return start_time
 
+
 # Quizzing loop
 def quiz() -> None:
     for i in range(20):
         if i % 1 == 0:
-            num1 = random.randint(0,9)
-            num2 = random.randint(0,9)
+            num1 = random.randint(0, 9)
+            num2 = random.randint(0, 9)
         while True:
             print(num1, "x", num2, "=")
             answer = input("")
@@ -47,14 +50,16 @@ def quiz() -> None:
             elif int(answer) != num1 * num2:
                 print("Incorrect\n")
 
+
 # stops the timer
 def timer_end() -> float:
     # You should consider stopping the timer before displaying this message.
-    # They have completed the test, but the timer does not stop until they 
+    # They have completed the test, but the timer does not stop until they
     # say they done.
     input("Press Enter to stop\n")
     end_time = time.time()
     return end_time
+
 
 # displays time taken to finish the quiz
 def time_convert(sec: int) -> None:
@@ -69,16 +74,19 @@ def time_convert(sec: int) -> None:
     sec = sec % 60
     print(int(sec), "seconds\n")
 
+
 # calculates the time
 def time_display(start_time: float, end_time: float) -> float:
     timer = end_time - start_time
     return timer
 
+
 # Displays the time taken to answer the chosen amount of equations
 def result_display(name: str, timer: float) -> None:
-    print("Well done " +str(name)+"!")
+    print("Well done " + str(name) + "!")
     print("Your time was:")
     time_convert(timer)
+
 
 def main():
     # You need to pass variables around to use them in other methods
@@ -91,6 +99,7 @@ def main():
     timer = time_display(start_time=start_time, end_time=finish_time)
     time_convert(timer)
     result_display(name=name, timer=timer)
+
 
 if __name__ == "__main__":
     main()

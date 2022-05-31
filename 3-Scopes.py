@@ -22,7 +22,7 @@ def example_1() -> None:
         print(x)
     except NameError as e:
         # catch the exception so execution can continue.
-        print (e)
+        print(e)
         pass
 
     x = "Hello World"
@@ -70,10 +70,10 @@ def example_2() -> None:
         print(x)
     except NameError as e:
         # catch the exception so execution can continue.
-        print (e)
+        print(e)
         pass
 
-    x = 'Hello World'
+    x = "Hello World"
 
     # This works, x is in scope and has been defined before print_x is called.
     print_x()
@@ -86,7 +86,7 @@ def example_3() -> None:
     function_name = "Example 3"
     print(f">>> {function_name}")
 
-    def print_var(x: str=None) -> None:
+    def print_var(x: str = None) -> None:
         """Prints a passed in string.
         
         x is defined as the argument passed to this function.
@@ -117,20 +117,20 @@ def example_3() -> None:
         print(x)
     except NameError as e:
         # catch the exception so execution can continue.
-        print (e)
+        print(e)
         pass
     print(f"<<< {function_name}", end="\n\n")
 
 
 def example_4() -> None:
     """Variables created in a method."""
-    
+
     function_name = "Example 4"
     print(f">>> {function_name}")
 
     def make_variables() -> None:
         x = "make_variables"
-        global y 
+        global y
         y = "make_variables"
 
         # Internal to the function, print variables to show they are defined:
@@ -140,17 +140,17 @@ def example_4() -> None:
         print("-------")
 
     make_variables()
-    
+
     print("Outside make_variables")
     # We cannot do this. x has never been defined.
     try:
         print(x)
     except NameError as e:
         # catch the exception so execution can continue.
-        print (e)
+        print(e)
         pass
 
-    # This works because y was declared global. This means all methods can 
+    # This works because y was declared global. This means all methods can
     # access this variable. This may seem good but it does have performance
     # implications.
     print(f"y: {y}")
@@ -175,8 +175,8 @@ def example_5() -> None:
 
     # Define a variable outside
     x = "x defined outside"
-    
-    # Pass it into a method, and that method returns a value. Assign that 
+
+    # Pass it into a method, and that method returns a value. Assign that
     # returned value outside the method and print it.
     return_value = define_variable(x)
     print(f"Printing return value outside: '{return_value}'")
@@ -188,6 +188,7 @@ def example_6():
     """Example to show changing variables out of scope."""
     function_name = "Example 6"
     print(f">>> {function_name}")
+
     def variable_changer(x: str) -> str:
         "Changes a string variable and returns it."
         x = "HAXXED"
@@ -197,14 +198,13 @@ def example_6():
 
     return_value = variable_changer(x)
 
-    # This prints the outside value. x out here, is not the same as 
+    # This prints the outside value. x out here, is not the same as
     # x defined in variable_changer.
     print(x)
 
     # This prints HAXXED. The return value of variable_changer
     print(return_value)
     print(f"<<< {function_name}", end="\n\n")
-
 
 
 def main():
@@ -214,6 +214,7 @@ def main():
     example_4()
     example_5()
     example_6()
+
 
 if __name__ == "__main__":
     main()

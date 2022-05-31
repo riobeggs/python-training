@@ -10,7 +10,7 @@ The idea is to highlight strings.
 
 SEPARATOR = "---"
 
-    
+
 def example_1() -> None:
     print("Example 1:")
 
@@ -22,15 +22,15 @@ def example_1() -> None:
         print(SEPARATOR)
 
     x = "I am a string"
-    print (f"printing x: {x}")
+    print(f"printing x: {x}")
     print(SEPARATOR)
 
     x = "I have been changed"
-    print (f"printing x: {x}")
+    print(f"printing x: {x}")
 
     print()
 
-    
+
 def example_2() -> None:
     print("Example 2:")
     x = "I am a string"
@@ -47,18 +47,19 @@ def example_2() -> None:
     # Answer:
     # 'I am string' will be printed
     # We are print the value of x in scope.
-    # When we pass x into change_string, a new variable is created. 
-    # 
-    # Think of this as changed_string_x. When we assign 'CHANGED' we are setting 
-    # changed_string_x to 'CHANGED', not example_2_x. 
+    # When we pass x into change_string, a new variable is created.
+    #
+    # Think of this as changed_string_x. When we assign 'CHANGED' we are setting
+    # changed_string_x to 'CHANGED', not example_2_x.
     #
     # When we print, we print example_2_x.
 
-    print(change_string(x)) # Prints None because no value is returned
+    print(change_string(x))  # Prints None because no value is returned
     print(SEPARATOR)
 
     print(x)
     print()
+
 
 def example_3() -> None:
     print("Example 3:")
@@ -96,20 +97,19 @@ def example_3() -> None:
 def example_4() -> None:
     """Strings are immutable (cannot be modified)."""
     print("Example 4:")
-    x = "x" # point variable x at string 'x'
-    y = x # point variable y at the string variable x is poiinting at, this is string 'x'
+    x = "x"  # point variable x at string 'x'
+    y = x  # point variable y at the string variable x is poiinting at, this is string 'x'
 
     print(f"x: {x}")
     print(f"y: {y}")
     print(SEPARATOR)
 
     print("Sameness checks")
-    x_is_y = x is y # This is true. There is only one 'x' string object ever.
-    x_equals_y = x == y # This is true, their values are the same.
+    x_is_y = x is y  # This is true. There is only one 'x' string object ever.
+    x_equals_y = x == y  # This is true, their values are the same.
     print(f"x_is_y: {x_is_y}")
     print(f"x_equals_y: {x_equals_y}")
     print(SEPARATOR)
-
 
     print("Assign 'new value' to x")
     x = "new value"
@@ -119,8 +119,8 @@ def example_4() -> None:
     print(SEPARATOR)
 
     print("Sameness checks")
-    x_is_y = x is y # This is false, they point at different string objects
-    x_equals_y = x == y # This is false, they are not the same value
+    x_is_y = x is y  # This is false, they point at different string objects
+    x_equals_y = x == y  # This is false, they are not the same value
     print(f"x_is_y: {x_is_y}")
     print(f"x_equals_y: {x_equals_y}")
 
@@ -130,9 +130,9 @@ def example_4() -> None:
 def example_5() -> None:
     """Strings are immutable (cannot be modified)."""
     print("Example 5:")
-    x = "x" # point variable x at string 'x'
-    y = x # point variable y at the string variable x is poiinting at, this is string 'x'
-    z = 'x'
+    x = "x"  # point variable x at string 'x'
+    y = x  # point variable y at the string variable x is poiinting at, this is string 'x'
+    z = "x"
 
     print(f"x: {x}")
     print(f"y: {y}")
@@ -140,16 +140,15 @@ def example_5() -> None:
     print(SEPARATOR)
 
     print("Sameness checks")
-    x_is_y = x is y # This is true. There is only one 'x' string object ever.
-    x_is_z = x is z # This is true. There is only one 'x' string object ever.
-    x_equals_y = x == y # This is true, their values are the same.
-    x_equals_z = x == z # This is true, their values are the same.
+    x_is_y = x is y  # This is true. There is only one 'x' string object ever.
+    x_is_z = x is z  # This is true. There is only one 'x' string object ever.
+    x_equals_y = x == y  # This is true, their values are the same.
+    x_equals_z = x == z  # This is true, their values are the same.
     print(f"x_is_y: {x_is_y}")
     print(f"x_is_z: {x_is_z}")
     print(f"x_equals_y: {x_equals_y}")
     print(f"x_equals_z: {x_equals_z}")
     print(SEPARATOR)
-
 
     print("Assign 'new value' to x")
     x = "new value"
@@ -167,6 +166,7 @@ def main() -> None:
     example_3()
     example_4()
     example_5()
+
 
 if __name__ == "__main__":
     main()
