@@ -86,18 +86,17 @@ def get_operator():
             continue
         return operator
 
-def answer(operator):
+def answer(num1, operator, num2):
     if operator == "+":
-        print("\nAnswer:", equation.add())
+        return(num1, "+", num2, "=", equation.add())
     if operator == "-":
-        print("\nAnswer: ", equation.subtract())
+        return(num1, "-", num2, "=", equation.subtract())
     if operator == "x":
-        print("\nAnswer:", equation.multiply())
+        return(num1, "x", num2, "=", equation.multiply())
     if operator == "*":
-        print("\nAnswer:", equation.multiply())
+        return(num1, "*", num2, "=", equation.multiply())
     if operator == "/":
-        print("\nAnswer:", equation.divide())
-    print("\n\n")
+        return(num1, "/", num2, "=", equation.divide())
 
 
 Calculator.instructions()
@@ -105,7 +104,7 @@ num1 = get_number("First")
 operator = get_operator()
 num2 = get_number("Second")
 equation = Calculator(num1=num1, operator=operator, num2=num2) 
-answer(operator)
+print(answer(num1, operator, num2))
 
 
     # Define a function which gives instruction how to use the calculator
