@@ -47,7 +47,7 @@ class Equation:
     def get_number(self):
         while True:
             self.number = input(f"{self.question_prefix} number: ")
-            self.converted_number = Equation._convert_to_float(self.number)
+            self.converted_number = self._convert_to_float(self.number)
 
             if self.converted_number == None:
                 continue
