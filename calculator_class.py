@@ -36,8 +36,8 @@ class Calculator:
         print()
    
 
-class Equation:
-    def __init__(self, question_prefix, number, converted_number, operator):
+class Get_equation:
+    def __init__(self, question_prefix=None, number=None, converted_number=None, operator=None):
         self.question_prefix = question_prefix
         self.number = number
         self.converted_number = converted_number
@@ -47,7 +47,7 @@ class Equation:
     def get_number(self):
         while True:
             self.number = input(f"{self.question_prefix} number: ")
-            self.converted_number = Equation.convert_to_float(self.number)
+            self.converted_number = Get_equation(number=self.number).convert_to_float()
 
             if self.converted_number == None:
                 continue
@@ -55,12 +55,12 @@ class Equation:
             return self.converted_number
 
             
-    def convert_to_float(number):
+    def convert_to_float(self):
         converted = None
         try:
-            converted = float(number)
+            converted = float(self.number)
         except:
-            print("Could not convert", number, "to a float")
+            print("Could not convert", self.number, "to a float")
 
         return converted
 
@@ -73,13 +73,11 @@ class Equation:
             return self.operator
 
 
-
 Calculator.instructions()
-num1 = Equation(question_prefix="First", number=None, converted_number=None, operator=None).get_number()
-operator = Equation(question_prefix=None, number=None, converted_number=None, operator=None).get_operator()
-num2 = Equation(question_prefix="Second", number=None, converted_number=None, operator=None).get_number()
-calculator = Calculator(num1=num1, operator=operator, num2=num2) 
-calculator.calculate_answer()
+num1 = Get_equation(question_prefix="First").get_number()
+operator = Get_equation().get_operator()
+num2 = Get_equation(question_prefix="Second").get_number()
+Calculator(num1=num1, operator=operator, num2=num2).calculate_answer()
 
 
     # Define a function which gives instruction how to use the calculator
