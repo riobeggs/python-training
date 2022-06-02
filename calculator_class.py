@@ -37,18 +37,22 @@ class Calculator:
    
 
 class Equation:
-    def __init__(self, question_prefix):
+    def __init__(self, question_prefix, number, converted_number, operator):
         self.question_prefix = question_prefix
+        self.number = number
+        self.converted_number = converted_number
+        self.operator = operator
+
 
     def get_number(self):
         while True:
-            number = input(f"{self.question_prefix} number: ")
-            converted_number = Equation.convert_to_float(number)
+            self.number = input(f"{self.question_prefix} number: ")
+            self.converted_number = Equation.convert_to_float(self.number)
 
-            if converted_number == None:
+            if self.converted_number == None:
                 continue
 
-            return converted_number
+            return self.converted_number
 
             
     def convert_to_float(number):
@@ -61,19 +65,19 @@ class Equation:
         return converted
 
 
-    def get_operator():
+    def get_operator(self):
         while True:
-            operator = input("Operator: ")
-            if operator not in OPERATIONS:
+            self.operator = input("Operator: ")
+            if self.operator not in OPERATIONS:
                 continue
-            return operator
+            return self.operator
 
 
 
 Calculator.instructions()
-num1 = Equation(question_prefix="First").get_number()
-operator = Equation.get_operator()
-num2 = Equation(question_prefix="Second").get_number()
+num1 = Equation(question_prefix="First", number=None, converted_number=None, operator=None).get_number()
+operator = Equation(question_prefix=None, number=None, converted_number=None, operator=None).get_operator()
+num2 = Equation(question_prefix="Second", number=None, converted_number=None, operator=None).get_number()
 calculator = Calculator(num1=num1, operator=operator, num2=num2) 
 calculator.calculate_answer()
 
