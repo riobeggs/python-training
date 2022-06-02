@@ -81,38 +81,41 @@ class Calculator:
             print()
             print(num1, "/", num2, "=", equation.divide())
             print()
-            
 
 
+class Quizzer:
+    def __init__(self, number):
+        self.number = number
+    
+    
+    def convert_to_float(number):
+        converted = None
+        try:
+            converted = float(number)
+        except:
+            print(f"Could not convert '{number}' to a float")
 
-def convert_to_float(number: str):
-    converted = None
-    try:
-        converted = float(number)
-    except:
-        print(f"Could not convert '{number}' to a float")
-
-    return converted
-
-
-def get_number(question_prefix: str):
-    while True:
-        num = input(f"{question_prefix} number: ")
-
-        converted_num = convert_to_float(num)
-
-        if converted_num == None:
-            continue
-
-        return converted_num
+        return converted
 
 
-def get_operator():
-    while True:
-        operator = input("Operator: ")
-        if operator not in available_operators:
-            continue
-        return operator
+    def get_number(question_prefix: str):
+        while True:
+            number = input(f"{question_prefix} number: ")
+
+            converted_number = convert_to_float(number)
+
+            if converted_number == None:
+                continue
+
+            return converted_number
+
+
+    def get_operator():
+        while True:
+            operator = input("Operator: ")
+            if operator not in available_operators:
+                continue
+            return operator
 
 
 
