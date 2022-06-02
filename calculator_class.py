@@ -47,7 +47,7 @@ class Equation:
     def get_number(self):
         while True:
             self.number = input(f"{self.question_prefix} number: ")
-            self.converted_number = Equation.convert_to_float(self.number)
+            self.converted_number = Equation._convert_to_float(self.number)
 
             if self.converted_number == None:
                 continue
@@ -55,7 +55,11 @@ class Equation:
             return self.converted_number
 
             
-    def convert_to_float(number):
+    def _convert_to_float(number):
+        """As this class is never called externally, we prefix it with an "_". 
+        
+        Attempts to convert a number to a float.
+        """
         converted = None
         try:
             converted = float(number)
