@@ -1,8 +1,8 @@
 import operator
+import sys
 
 
 #constants
-available_operators = ["+", "-", "x", "*", "/"]
 OPERATIONS = {
     "+": operator.add,
     "-": operator.sub,
@@ -25,7 +25,7 @@ class Calculator:
         print()
         print("Add using the '+' key.")
         print("Subtract using the '-' key.")
-        print("Multiply using the 'x' key.")
+        print("Multiply using the 'x' or '*' key.")
         print("Divide using the '/' key.")
         print()
 
@@ -37,7 +37,7 @@ class Calculator:
    
 
 class Get_equation:
-    def __init__(self, question_prefix=None, number=None, converted_number=None, operator=None):
+    def __init__(self, question_prefix=None, number=None, converted_number=None, operator=None, exit=None):
         self.question_prefix = question_prefix
         self.number = number
         self.converted_number = converted_number
@@ -47,6 +47,14 @@ class Get_equation:
     def get_number(self):
         while True:
             self.number = input(f"{self.question_prefix} number: ")
+            
+            if Get_equation(number=self.number).exit() == True:
+                print("\nQuitting...\n\n")
+                sys.exit()
+            # if self.number.lower().strip() == "quit":
+            #     print("Quitting...")
+            #     sys.exit(0)
+            
             self.converted_number = Get_equation(number=self.number).convert_to_float()
 
             if self.converted_number == None:
@@ -60,7 +68,7 @@ class Get_equation:
         try:
             converted = float(self.number)
         except:
-            print("Could not convert", self.number, "to a float")
+            print(self.number, "is not a number")
 
         return converted
 
@@ -68,16 +76,38 @@ class Get_equation:
     def get_operator(self):
         while True:
             self.operator = input("Operator: ")
+
+            if Get_equation(operator=self.operator).exit() == True:
+                print("\nQuitting...\n\n")
+                sys.exit()
+
             if self.operator not in OPERATIONS:
+                print(self.operator, "is not an operator")
                 continue
+
             return self.operator
+
+    
+    def exit(self):
+        try:
+            if self.number.lower().strip() == "quit":
+                return True
+        except:
+            pass
+
+        try:
+            if self.operator.lower().strip() == "quit":
+                return True
+        except:
+            pass
 
 
 Calculator.instructions()
-num1 = Get_equation(question_prefix="First").get_number()
-operator = Get_equation().get_operator()
-num2 = Get_equation(question_prefix="Second").get_number()
-Calculator(num1=num1, operator=operator, num2=num2).calculate_answer()
+while True:
+    num1 = Get_equation(question_prefix="First").get_number()
+    operator = Get_equation().get_operator()
+    num2 = Get_equation(question_prefix="Second").get_number()
+    Calculator(num1=num1, operator=operator, num2=num2).calculate_answer()
 
 
     # Define a function which gives instruction how to use the calculator
