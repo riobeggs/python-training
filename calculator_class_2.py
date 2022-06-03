@@ -29,37 +29,40 @@ class Calculator:
         "/": operator.truediv,
     }
 
-    def _add(self, equation: "Equation"):
+    def _get_operator(self, equation: "Equation") -> operator:
+        return self.OPERATIONS[equation.operator]
+
+    def _add(self, equation: "Equation") -> float:
         if (
             equation.can_calculate()
-            and self.OPERATIONS[equation.operator] is operator.add
+            and self._get_operator(equation) is operator.add
         ):
             result = equation.number_one + equation.number_two
             equation.result = result
             return result
 
-    def _subtract(self, equation: "Equation"):
+    def _subtract(self, equation: "Equation") -> float:
         if (
             equation.can_calculate()
-            and self.OPERATIONS[equation.operator] is operator.sub
+            and self.self._get_operator(equation) is operator.sub
         ):
             result = equation.number_one - equation.number_two
             equation.result = result
             return result
 
-    def _divide(self, equation: "Equation"):
+    def _divide(self, equation: "Equation") -> float:
         if (
             equation.can_calculate()
-            and self.OPERATIONS[equation.operator] is operator.truediv
+            and self.self._get_operator(equation) is operator.truediv
         ):
             result = equation.number_one / equation.number_two
             equation.result = result
             return result
 
-    def _multiply(self, equation: "Equation"):
+    def _multiply(self, equation: "Equation") -> float:
         if (
             equation.can_calculate()
-            and self.OPERATIONS[equation.operator] is operator.mul
+            and self.self._get_operator(equation) is operator.mul
         ):
             result = equation.number_one * equation.number_two
             equation.result = result
