@@ -20,7 +20,7 @@ def instructions():
 
 class Calculator:
     """A calculator capable of :gasp: calculating."""
-    
+
     OPERATIONS = {
         "+": operator.add,
         "-": operator.sub,
@@ -28,31 +28,42 @@ class Calculator:
         "*": operator.mul,
         "/": operator.truediv,
     }
-    
+
     def _add(self, equation: "Equation"):
-        if equation.can_calculate() and self.OPERATIONS[equation.operator] is operator.add:
+        if (
+            equation.can_calculate()
+            and self.OPERATIONS[equation.operator] is operator.add
+        ):
             result = equation.number_one + equation.number_two
             equation.result = result
             return result
-    
+
     def _subtract(self, equation: "Equation"):
-        if equation.can_calculate() and self.OPERATIONS[equation.operator] is operator.sub:
+        if (
+            equation.can_calculate()
+            and self.OPERATIONS[equation.operator] is operator.sub
+        ):
             result = equation.number_one - equation.number_two
             equation.result = result
             return result
-    
+
     def _divide(self, equation: "Equation"):
-        if equation.can_calculate() and self.OPERATIONS[equation.operator] is operator.truediv:
+        if (
+            equation.can_calculate()
+            and self.OPERATIONS[equation.operator] is operator.truediv
+        ):
             result = equation.number_one / equation.number_two
             equation.result = result
             return result
-    
+
     def _multiply(self, equation: "Equation"):
-        if equation.can_calculate() and self.OPERATIONS[equation.operator] is operator.mul:
+        if (
+            equation.can_calculate()
+            and self.OPERATIONS[equation.operator] is operator.mul
+        ):
             result = equation.number_one * equation.number_two
             equation.result = result
             return result
-
 
     def calculate(self, equation: "Equation") -> Union[float, None]:
         """Calculate a result from an equation."""
@@ -91,8 +102,10 @@ class Equation:
 
     def __str__(self):
         if self.result:
-            return f"{self.number_one} {self.operator} {self.number_two} = {self.result}"
-        
+            return (
+                f"{self.number_one} {self.operator} {self.number_two} = {self.result}"
+            )
+
         return f"Equation({self.number_one}, {self.number_two}, {self.operator})"
 
     def set_number_one(self) -> "Equation":

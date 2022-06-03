@@ -2,7 +2,7 @@ import operator
 import sys
 
 
-#constants
+# constants
 OPERATIONS = {
     "+": operator.add,
     "-": operator.sub,
@@ -18,7 +18,6 @@ class Calculator:
         self.operator = operator
         self.num2 = num2
 
-
     def instructions():
         print("\n\nYou may use this calculator as many times as you like.")
         print("To exit the calculator, type 'quit', then press enter.")
@@ -29,32 +28,43 @@ class Calculator:
         print("Divide using the '/' key.")
         print()
 
-
     def calculate_answer(self):
         print()
-        print(self.num1, self.operator, self.num2, "=", OPERATIONS[self.operator](self.num1, self.num2))
+        print(
+            self.num1,
+            self.operator,
+            self.num2,
+            "=",
+            OPERATIONS[self.operator](self.num1, self.num2),
+        )
         print()
-   
+
 
 class Get_equation:
-    def __init__(self, question_prefix=None, number=None, converted_number=None, operator=None, exit=None):
+    def __init__(
+        self,
+        question_prefix=None,
+        number=None,
+        converted_number=None,
+        operator=None,
+        exit=None,
+    ):
         self.question_prefix = question_prefix
         self.number = number
         self.converted_number = converted_number
         self.operator = operator
 
-
     def get_number(self):
         while True:
             self.number = input(f"{self.question_prefix} number: ")
-            
+
             if Get_equation(number=self.number).exit() == True:
                 print("\nQuitting...\n\n")
                 sys.exit()
             # if self.number.lower().strip() == "quit":
             #     print("Quitting...")
             #     sys.exit(0)
-            
+
             self.converted_number = Get_equation(number=self.number).convert_to_float()
 
             if self.converted_number == None:
@@ -62,7 +72,6 @@ class Get_equation:
 
             return self.converted_number
 
-            
     def convert_to_float(self):
         converted = None
         try:
@@ -71,7 +80,6 @@ class Get_equation:
             print(self.number, "is not a number")
 
         return converted
-
 
     def get_operator(self):
         while True:
@@ -87,7 +95,6 @@ class Get_equation:
 
             return self.operator
 
-    
     def exit(self):
         try:
             if self.number.lower().strip() == "quit":
@@ -109,7 +116,6 @@ while True:
     num2 = Get_equation(question_prefix="Second").get_number()
     Calculator(num1=num1, operator=operator, num2=num2).calculate_answer()
 
-
     # Define a function which gives instruction how to use the calculator
 
     # Create multiply func
@@ -118,9 +124,8 @@ while True:
     # Create subtract func
 
 
-
 # Once you have created a calculator class capable of performing calculations
-# Create project 4 again, but this time use the calculator. 
+# Create project 4 again, but this time use the calculator.
 # You must use my_calculator.Add(5, 6) for adding for instance
 
 # I really dont expect you to be able to do this.
