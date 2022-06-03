@@ -22,37 +22,25 @@ class Calculator:
     """A calculator capable of :gasp: calculating."""
 
     def _add(self, equation: "Equation") -> float:
-        if (
-            equation.can_calculate()
-            and equation.get_operator() is operator.add
-        ):
+        if equation.can_calculate() and equation.get_operator() is operator.add:
             result = equation.number_one + equation.number_two
             equation.result = result
             return result
 
     def _subtract(self, equation: "Equation") -> float:
-        if (
-            equation.can_calculate()
-            and equation.get_operator() is operator.sub
-        ):
+        if equation.can_calculate() and equation.get_operator() is operator.sub:
             result = equation.number_one - equation.number_two
             equation.result = result
             return result
 
     def _divide(self, equation: "Equation") -> float:
-        if (
-            equation.can_calculate()
-            and equation.get_operator() is operator.truediv
-        ):
+        if equation.can_calculate() and equation.get_operator() is operator.truediv:
             result = equation.number_one / equation.number_two
             equation.result = result
             return result
 
     def _multiply(self, equation: "Equation") -> float:
-        if (
-            equation.can_calculate()
-            and equation.get_operator() is operator.mul
-        ):
+        if equation.can_calculate() and equation.get_operator() is operator.mul:
             result = equation.number_one * equation.number_two
             equation.result = result
             return result
