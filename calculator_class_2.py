@@ -57,19 +57,6 @@ class Calculator:
             elif equation.get_operator() is operator.truediv:
                 return self._divide(equation)
 
-    def print_result(self, equation: "Equation") -> None:
-        """Prints the result if one exists."""
-
-        result = self.calculate(equation)
-        if result:
-            print()
-            print(equation)
-            print()
-
-            return
-
-        print("Error: Equation has no result.")
-
 
 class Equation:
     """An equation object holding details for and calculating."""
@@ -87,6 +74,7 @@ class Equation:
         self.number_two: float = None
         self.operator: operator = None
         self.result: float = None
+        self.calculator: Calculator = Calculator()
 
     def __str__(self):
         if self.result:
@@ -173,9 +161,26 @@ class Equation:
 
         return True
 
+    def calculate(self):
+        """Calculates the sum of an equation."""
+        if self.can_calculate():
+            self.calculator.calculate(self)
+        return self
+
     def reset(self) -> None:
         """Reset the equation."""
         self.__init__()
+
+    def print_result(self) -> None:
+        """Prints the result if one exists."""
+        if self.result:
+            print()
+            print(self)
+            print()
+
+            return
+
+        print("Error: Equation has no result.")
 
 
 def main():
@@ -186,8 +191,7 @@ def main():
     calculator = Calculator()
 
     while True:
-        equation.set_number_one().set_number_two().set_operator()
-        calculator.print_result(equation)
+        equation.set_number_one().set_number_two().set_operator().calculate().print_result()
 
         equation.reset()
 
