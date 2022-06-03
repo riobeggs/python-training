@@ -139,6 +139,7 @@ class Equation:
 
 
 def main():
+    """Some dumb comment."""
     instructions()
 
     equation = Equation()
