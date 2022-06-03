@@ -186,13 +186,10 @@ class Equation:
 def main():
     """Some dumb comment."""
     instructions()
-
     equation = Equation()
-    calculator = Calculator()
 
     while True:
         equation.set_number_one().set_number_two().set_operator().calculate().print_result()
-
         equation.reset()
 
 
