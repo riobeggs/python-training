@@ -21,21 +21,10 @@ def instructions():
 class Calculator:
     """A calculator capable of :gasp: calculating."""
 
-    OPERATIONS = {
-        "+": operator.add,
-        "-": operator.sub,
-        "x": operator.mul,
-        "*": operator.mul,
-        "/": operator.truediv,
-    }
-
-    def _get_operator(self, equation: "Equation") -> operator:
-        return self.OPERATIONS[equation.operator]
-
     def _add(self, equation: "Equation") -> float:
         if (
             equation.can_calculate()
-            and self._get_operator(equation) is operator.add
+            and equation.get_operator() is operator.add
         ):
             result = equation.number_one + equation.number_two
             equation.result = result
@@ -44,7 +33,7 @@ class Calculator:
     def _subtract(self, equation: "Equation") -> float:
         if (
             equation.can_calculate()
-            and self._get_operator(equation) is operator.sub
+            and equation.get_operator() is operator.sub
         ):
             result = equation.number_one - equation.number_two
             equation.result = result
@@ -53,7 +42,7 @@ class Calculator:
     def _divide(self, equation: "Equation") -> float:
         if (
             equation.can_calculate()
-            and self._get_operator(equation) is operator.truediv
+            and equation.get_operator() is operator.truediv
         ):
             result = equation.number_one / equation.number_two
             equation.result = result
@@ -62,7 +51,7 @@ class Calculator:
     def _multiply(self, equation: "Equation") -> float:
         if (
             equation.can_calculate()
-            and self._get_operator(equation) is operator.mul
+            and equation.get_operator() is operator.mul
         ):
             result = equation.number_one * equation.number_two
             equation.result = result
@@ -71,13 +60,13 @@ class Calculator:
     def calculate(self, equation: "Equation") -> Union[float, None]:
         """Calculate a result from an equation."""
         if equation.can_calculate():
-            if self.OPERATIONS[equation.operator] is operator.add:
+            if equation.get_operator() is operator.add:
                 return self._add(equation)
-            elif self.OPERATIONS[equation.operator] is operator.sub:
+            elif equation.get_operator() is operator.sub:
                 return self._subtract(equation)
-            elif self.OPERATIONS[equation.operator] is operator.mul:
+            elif equation.get_operator() is operator.mul:
                 return self._multiply(equation)
-            elif self.OPERATIONS[equation.operator] is operator.truediv:
+            elif equation.get_operator() is operator.truediv:
                 return self._divide(equation)
 
     def print_result(self, equation: "Equation") -> None:
@@ -97,6 +86,14 @@ class Calculator:
 class Equation:
     """An equation object holding details for and calculating."""
 
+    OPERATIONS = {
+        "+": operator.add,
+        "-": operator.sub,
+        "x": operator.mul,
+        "*": operator.mul,
+        "/": operator.truediv,
+    }
+
     def __init__(self):
         self.number_one: float = None
         self.number_two: float = None
@@ -110,6 +107,10 @@ class Equation:
             )
 
         return f"Equation({self.number_one}, {self.number_two}, {self.operator})"
+
+    def get_operator(self) -> operator:
+        """Convert the value in self.operator to an 'cls:operator'."""
+        return self.OPERATIONS[self.operator]
 
     def set_number_one(self) -> "Equation":
         """Sets number one of our equation.
@@ -157,7 +158,7 @@ class Equation:
         """Sets the operator of our equation."""
         while True:
             self.operator = input("Operator: ")
-            if self.operator not in Calculator.OPERATIONS:
+            if self.operator not in self.OPERATIONS:
                 continue
 
             return self
