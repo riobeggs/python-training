@@ -44,7 +44,7 @@ class Calculator:
     def _subtract(self, equation: "Equation") -> float:
         if (
             equation.can_calculate()
-            and self.self._get_operator(equation) is operator.sub
+            and self._get_operator(equation) is operator.sub
         ):
             result = equation.number_one - equation.number_two
             equation.result = result
@@ -53,7 +53,7 @@ class Calculator:
     def _divide(self, equation: "Equation") -> float:
         if (
             equation.can_calculate()
-            and self.self._get_operator(equation) is operator.truediv
+            and self._get_operator(equation) is operator.truediv
         ):
             result = equation.number_one / equation.number_two
             equation.result = result
@@ -62,7 +62,7 @@ class Calculator:
     def _multiply(self, equation: "Equation") -> float:
         if (
             equation.can_calculate()
-            and self.self._get_operator(equation) is operator.mul
+            and self._get_operator(equation) is operator.mul
         ):
             result = equation.number_one * equation.number_two
             equation.result = result
