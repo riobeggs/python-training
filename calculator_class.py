@@ -47,7 +47,6 @@ class Get_equation:
         number=None,
         converted_number=None,
         operator=None,
-        exit=None,
     ):
         self.question_prefix = question_prefix
         self.number = number
@@ -58,7 +57,7 @@ class Get_equation:
         while True:
             self.number = input(f"{self.question_prefix} number: ")
 
-            if Get_equation(number=self.number).exit() == True:
+            if Get_equation(number=self.number).quit() == True:
                 print("\nQuitting...\n\n")
                 sys.exit()
             # if self.number.lower().strip() == "quit":
@@ -85,7 +84,7 @@ class Get_equation:
         while True:
             self.operator = input("Operator: ")
 
-            if Get_equation(operator=self.operator).exit() == True:
+            if Get_equation(operator=self.operator).quit() == True:
                 print("\nQuitting...\n\n")
                 sys.exit()
 
@@ -95,7 +94,7 @@ class Get_equation:
 
             return self.operator
 
-    def exit(self):
+    def quit(self):
         try:
             if self.number.lower().strip() == "quit":
                 return True
