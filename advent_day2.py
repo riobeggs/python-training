@@ -1,7 +1,6 @@
-box_dimensions = """29x13x26
+presents = """29x13x26
 11x11x14
-27x2
-x5
+27x2x5
 6x10x13
 15x19x10
 26x29x15
@@ -999,33 +998,42 @@ x5
 3x2x22
 14x3x5
 10x9x8"""
-
-# example:
-box_dimensions = "1x1x10"
-y = box_dimensions.split("x")
-l, w, h = y[0], y[1], y[2]
-l = int(l)
-w = int(w)
-h = int(h)
+line = presents.split("\n")
 
 
-area = (2*l*w) + (2*w*h) + (2*h*l)
+for dimensions in line:
+    side = dimensions.split("x")
+    
+    l, w, h = side[0], side[1], side[2]
+    l = int(l)
+    w = int(w)
+    h = int(h)
 
 
-if (l*w) < (w*h):
-    if (l*w) < (h*l):
-        slack = (l*w)
-
-if (w*h) < (h*l):
-    if (w*h) < (l*w):
-        slack = (w*h)
-
-if (h*l) < (l*w):
-    if (h*l) < (w*h):
-        slack = (h*l)
+    area = (2*l*w) + (2*w*h) + (2*h*l)
 
 
-paper_needed = (area + slack)
-print(paper_needed)
+    if (l*w) < (w*h):
+        if (l*w) < (h*l):
+            slack = (l*w)
+
+    if (w*h) < (h*l):
+        if (w*h) < (l*w):
+            slack = (w*h)
+
+    if (h*l) < (l*w):
+        if (h*l) < (w*h):
+            slack = (h*l)
+
+
+    paper_needed = (area + slack)
+    print(paper_needed)
 
     
+
+# dimensions = presents.replace("x", ",")
+# bum = [dimensions.strip("\n")]
+# l, w, h = bum[0], bum[1], bum[2]
+# l = int(l)
+# w = int(w)
+# h = int(h)
