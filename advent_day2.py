@@ -999,41 +999,42 @@ presents = """29x13x26
 14x3x5
 10x9x8"""
 line = presents.split("\n")
+total = []
 
 
-for dimensions in line:
-    side = dimensions.split("x")
-    
-    l, w, h = side[0], side[1], side[2]
-    l = int(l)
-    w = int(w)
-    h = int(h)
+def find_paper_needed_for_each_present():
+    # for i in range(len(presents)):
+        for dimensions in line:
+            side = dimensions.split("x")
+            
+            l, w, h = side[0], side[1], side[2]
+            l = int(l)
+            w = int(w)
+            h = int(h)
+
+            area = (2*l*w) + (2*w*h) + (2*h*l)
+
+            if (l*w) <= (w*h):
+                if (l*w) <= (h*l):
+                    slack = (l*w)
+
+            if (w*h) <= (h*l):
+                if (w*h) <= (l*w):
+                    slack = (w*h)
+
+            if (h*l) <= (l*w):
+                if (h*l) <= (w*h):
+                    slack = (h*l)
+
+            paper_needed = (area + slack)
+            total.append(paper_needed)
 
 
-    area = (2*l*w) + (2*w*h) + (2*h*l)
+def main():
+    find_paper_needed_for_each_present()
+    total_paper_needed = sum(total)
+    print(total_paper_needed)
 
 
-    if (l*w) < (w*h):
-        if (l*w) < (h*l):
-            slack = (l*w)
-
-    if (w*h) < (h*l):
-        if (w*h) < (l*w):
-            slack = (w*h)
-
-    if (h*l) < (l*w):
-        if (h*l) < (w*h):
-            slack = (h*l)
-
-
-    paper_needed = (area + slack)
-    print(paper_needed)
-
-    
-
-# dimensions = presents.replace("x", ",")
-# bum = [dimensions.strip("\n")]
-# l, w, h = bum[0], bum[1], bum[2]
-# l = int(l)
-# w = int(w)
-# h = int(h)
+if __name__ == "__main__":
+    main()
