@@ -1003,6 +1003,8 @@ vowels = ["a", "e", "i", "o", "u"]
 disallowed = ["ab", "cd", "pq", "xy"]
 nice_strings = 0
 
+# part 1
+
 
 def vowel_checker(letter, vc):
     if len(vc) < 3:
@@ -1067,6 +1069,62 @@ def run(nice_strings):
             nice_strings += 1
 
     print(nice_strings)
-            
 
-run(nice_strings)
+
+# part 2
+
+def checker_1(letter, letter_index, c1, string_check):
+    if letter_index == 0:
+        return None
+    if letter_index == 1:
+        c1.append(string_check[letter_index - 1] + letter)
+        return None    
+    if letter == string_check[letter_index - 1]:
+        if letter == string_check[letter_index - 2]:
+            try:
+                c1.remove((string_check[letter_index - 1]) + (string_check[letter_index - 2]))
+                return None
+            except:
+                return None
+    if string_check[letter_index - 1] + letter in c1:
+        return True
+    else: c1.append(string_check[letter_index - 1] + letter)
+
+
+def checker_2(letter, letter_index, string_check):
+    if letter_index <= 1:
+        return None
+    if letter == string_check[letter_index - 2]:
+        return True
+
+
+def run2(nice_strings):
+    for word in strings:
+        string_check = []
+        nice_string_check = []
+        letter_index = -1
+        c1 = []
+
+        for letter in word:
+            string_check.append(letter)
+            letter_index += 1
+
+            if checker_1(letter, letter_index, c1, string_check) == True:
+                if "passed checker 1" in nice_string_check:
+                    pass
+                else: 
+                    nice_string_check.append("passed checker 1")
+
+            if checker_2(letter, letter_index, string_check) == True:
+                if "passed checker 2" in nice_string_check:
+                    pass
+                else: 
+                    nice_string_check.append("passed checker 2")
+
+        if len(nice_string_check) == 2:
+            nice_strings += 1
+
+    print(nice_strings)
+
+
+run2(nice_strings)
