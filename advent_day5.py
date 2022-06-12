@@ -1073,7 +1073,10 @@ def run(nice_strings):
 
 # part 2
 
-def checker_1(letter, letter_index, c1, string_check):
+def split(word):
+    return [char for char in word]
+
+def checker_1(letter, letter_index, c1, string_check, word_list):
     if letter_index == 0:
         return None
     if letter_index == 1:
@@ -1081,6 +1084,8 @@ def checker_1(letter, letter_index, c1, string_check):
         return None    
     if letter == string_check[letter_index - 1]:
         if letter == string_check[letter_index - 2]:
+            if letter == word_list[letter_index + 1]:
+                return True
             try:
                 c1.remove((string_check[letter_index - 1]) + (string_check[letter_index - 2]))
                 return None
@@ -1104,12 +1109,13 @@ def run2(nice_strings):
         nice_string_check = []
         letter_index = -1
         c1 = []
+        word_list = split(word)
 
         for letter in word:
             string_check.append(letter)
             letter_index += 1
 
-            if checker_1(letter, letter_index, c1, string_check) == True:
+            if checker_1(letter, letter_index, c1, string_check, word_list) == True:
                 if "passed checker 1" in nice_string_check:
                     pass
                 else: 
