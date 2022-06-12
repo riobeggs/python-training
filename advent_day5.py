@@ -1001,8 +1001,8 @@ wtebigbaythklkbd"""
 strings = strings.split("\n")
 vowels = ["a", "e", "i", "o", "u"]
 disallowed = ["ab", "cd", "pq", "xy"]
-
 nice_strings = 0
+
 
 def vowel_checker(letter, vc):
     if len(vc) < 3:
@@ -1011,19 +1011,27 @@ def vowel_checker(letter, vc):
 
             if len(vc) >= 3:
                 return True
-            
-            return False
 
     if len(vc) >= 3:
         return True
 
 
-def disallowed_checker(letter):
-    pass
+def disallowed_checker(word):
+    if disallowed[0] in word:
+        return True
+    if disallowed[1] in word:
+        return True
+    if disallowed[2] in word:
+        return True
+    if disallowed[3] in word:
+        return True
+    
 
-
-def double_letter_checker(letter):
-    pass
+def double_letter_checker(letter, letter_pos, string_check):
+    if letter_pos == 1:
+        return None
+    if letter == string_check[letter_pos - 2]:
+        return True
 
 
 def run(nice_strings):
@@ -1031,9 +1039,11 @@ def run(nice_strings):
         string_check = []
         vc = []
         nice_string_check = []
+        letter_pos = 0
 
         for letter in word:
             string_check.append(letter)
+            letter_pos += 1
 
             if vowel_checker(letter, vc) == True:
                 if "3 vowels present" in nice_string_check:
@@ -1041,9 +1051,17 @@ def run(nice_strings):
                 else:
                     nice_string_check.append("3 vowels present")
 
-            disallowed_checker(letter)
+            if disallowed_checker(word) == None:
+                if "no disallowed strings present" in nice_string_check:
+                    pass
+                else:
+                    nice_string_check.append("no disallowed strings present")
 
-            double_letter_checker(letter)
+            if double_letter_checker(letter, letter_pos, string_check) == True:
+                if "double letter present" in nice_string_check:
+                    pass
+                else:
+                    nice_string_check.append("double letter present")
 
         if len(nice_string_check) == 3:
             nice_strings += 1
