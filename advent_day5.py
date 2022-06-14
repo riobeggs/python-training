@@ -1006,16 +1006,13 @@ nice_strings = 0
 # part 1
 
 
-def vowel_checker(letter, vc):
-    if len(vc) < 3:
+def found_3_vowels(letter, amount_of_vowels):
+    if amount_of_vowels < 3:
         if letter in vowels:
-            vc.append(".")
+            amount_of_vowels += 1
 
-            if len(vc) >= 3:
+            if amount_of_vowels >= 3:
                 return True
-
-    if len(vc) >= 3:
-        return True
 
 
 def disallowed_checker(word):
@@ -1039,7 +1036,7 @@ def double_letter_checker(letter, letter_pos, string_check):
 def run(nice_strings):
     for word in strings:
         string_check = []
-        vc = []
+        amount_of_vowels = 0
         nice_string_check = []
         letter_pos = 0
 
@@ -1047,10 +1044,8 @@ def run(nice_strings):
             string_check.append(letter)
             letter_pos += 1
 
-            if vowel_checker(letter, vc) == True:
-                if "3 vowels present" in nice_string_check:
-                    pass
-                else:
+            if not "3 vowels present" in nice_string_check:
+                if found_3_vowels(letter, amount_of_vowels) == True:
                     nice_string_check.append("3 vowels present")
 
             if disallowed_checker(word) == None:
