@@ -100,7 +100,9 @@ def main():
     quiz(equations)
     end_time = timer_end()
     result_display(
-        name, end_time, start_time,
+        name,
+        end_time,
+        start_time,
     )
 
 

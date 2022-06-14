@@ -1000,72 +1000,63 @@ gtjscincktlwwkkf
 wtebigbaythklkbd"""
 strings = strings.split("\n")
 vowels = ["a", "e", "i", "o", "u"]
-disallowed = ["ab", "cd", "pq", "xy"]
+disallowed_words = ["ab", "cd", "pq", "xy"]
 nice_strings = 0
 
 # part 1
 
 
-def vowel_checker(letter, vc):
-    if len(vc) < 3:
+def found_3_vowels(letter, amount_of_vowels):
+    if amount_of_vowels < 3:
         if letter in vowels:
-            vc.append(".")
-
-            if len(vc) >= 3:
-                return True
-
-    if len(vc) >= 3:
-        return True
+            amount_of_vowels += 1
+    return amount_of_vowels
 
 
 def disallowed_checker(word):
-    if disallowed[0] in word:
-        return True
-    if disallowed[1] in word:
-        return True
-    if disallowed[2] in word:
-        return True
-    if disallowed[3] in word:
-        return True
-    
+    for disallowed in disallowed_words:
+        if disallowed in word:
+            return True
+
+    return False
+
 
 def double_letter_checker(letter, letter_pos, string_check):
     if letter_pos == 1:
-        return None
-    if letter == string_check[letter_pos - 2]:
-        return True
+        return False
+
+    return letter == string_check[letter_pos - 2]
 
 
 def run(nice_strings):
     for word in strings:
         string_check = []
-        vc = []
+        amount_of_vowels = 0
         nice_string_check = []
         letter_pos = 0
 
+        if disallowed_checker(word):
+            continue
+                    
         for letter in word:
             string_check.append(letter)
             letter_pos += 1
 
-            if vowel_checker(letter, vc) == True:
-                if "3 vowels present" in nice_string_check:
-                    pass
-                else:
+            if "3 vowels present" in nice_string_check:
+                pass
+            
+            else:
+                amount_of_vowels = found_3_vowels(letter, amount_of_vowels)
+                if amount_of_vowels == 3:
                     nice_string_check.append("3 vowels present")
+                    
+            if "double letter present" in nice_string_check:
+                pass
+            
+            elif double_letter_checker(letter, letter_pos, string_check):
+                nice_string_check.append("double letter present")
 
-            if disallowed_checker(word) == None:
-                if "no disallowed strings present" in nice_string_check:
-                    pass
-                else:
-                    nice_string_check.append("no disallowed strings present")
-
-            if double_letter_checker(letter, letter_pos, string_check) == True:
-                if "double letter present" in nice_string_check:
-                    pass
-                else:
-                    nice_string_check.append("double letter present")
-
-        if len(nice_string_check) == 3:
+        if len(nice_string_check) == 2:
             nice_strings += 1
 
     print(nice_strings)
@@ -1073,27 +1064,32 @@ def run(nice_strings):
 
 # part 2
 
+
 def split(word):
     return [char for char in word]
+
 
 def checker_1(letter, letter_index, c1, string_check, word_list):
     if letter_index == 0:
         return None
     if letter_index == 1:
         c1.append(string_check[letter_index - 1] + letter)
-        return None    
+        return None
     if letter == string_check[letter_index - 1]:
         if letter == string_check[letter_index - 2]:
             if letter == word_list[letter_index + 1]:
                 return True
             try:
-                c1.remove((string_check[letter_index - 1]) + (string_check[letter_index - 2]))
+                c1.remove(
+                    (string_check[letter_index - 1]) + (string_check[letter_index - 2])
+                )
                 return None
             except:
                 return None
     if string_check[letter_index - 1] + letter in c1:
         return True
-    else: c1.append(string_check[letter_index - 1] + letter)
+    else:
+        c1.append(string_check[letter_index - 1] + letter)
 
 
 def checker_2(letter, letter_index, string_check):
@@ -1118,13 +1114,13 @@ def run2(nice_strings):
             if checker_1(letter, letter_index, c1, string_check, word_list) == True:
                 if "passed checker 1" in nice_string_check:
                     pass
-                else: 
+                else:
                     nice_string_check.append("passed checker 1")
 
             if checker_2(letter, letter_index, string_check) == True:
                 if "passed checker 2" in nice_string_check:
                     pass
-                else: 
+                else:
                     nice_string_check.append("passed checker 2")
 
         if len(nice_string_check) == 2:
@@ -1133,4 +1129,4 @@ def run2(nice_strings):
     print(nice_strings)
 
 
-run2(nice_strings)
+run(nice_strings)

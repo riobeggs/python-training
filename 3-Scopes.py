@@ -33,15 +33,15 @@ def example_1() -> None:
 
 def example_2() -> None:
     """Scope is inherited. This means unindented code is inhertied by indented
-    code. 
-    
+    code.
+
     Example:
         |---x = 1
         |-------# x is defined at this tabbing
         |# x is not defined at this tabbing
 
-    
-    
+
+
     When we use functions, variables defined before the function call
     will be inherited.
 
@@ -57,7 +57,7 @@ def example_2() -> None:
         printer()
         # 1
         # 2
-    
+
     """
     function_name = "Example 2"
     print(f">>> {function_name}")
@@ -88,7 +88,7 @@ def example_3() -> None:
 
     def print_var(x: str = None) -> None:
         """Prints a passed in string.
-        
+
         x is defined as the argument passed to this function.
         """
         x_exists = x is not None
@@ -159,8 +159,7 @@ def example_4() -> None:
 
 
 def example_5() -> None:
-    """Pass a variable into a method and exhibit and consume its return value.
-    """
+    """Pass a variable into a method and exhibit and consume its return value."""
     function_name = "Example 5"
     print(f">>> {function_name}")
 

@@ -1,5 +1,3 @@
-
-
 from typing import List
 
 
@@ -76,19 +74,19 @@ class Kangaroo(Animal):
     def put_something_in_pouch(self, item: "PouchableObject") -> None:
         # if there are less than 3 objects put item in the pouch
         if not isinstance(item, PouchableObject):
-            print("Something went wrong.") # Worst
-            print("Your item is not a PouchableObject.") # Medium
-            print(f"{type(item).__name__} is not a {PouchableObject.__name__}") # True
+            print("Something went wrong.")  # Worst
+            print("Your item is not a PouchableObject.")  # Medium
+            print(f"{type(item).__name__} is not a {PouchableObject.__name__}")  # True
             return
 
         if item.is_sharp:
             print("Ouch!")
             return
-            
+
         if len(self.pouch) < 3:
             self.pouch.append(item)
             return
-        
+
         print("Too many items?")
         # [stretch] if the item is sharp, we cannot put it in and exclaim ouch
 
@@ -122,7 +120,7 @@ animal_list: List[Animal] = [roo, pipi, andy, nadal]
 
 items = ["a bad item", stone, stone, branch, diamond, branch]
 
-for rubbish in items:  
+for rubbish in items:
     roo.put_something_in_pouch(rubbish)
 
 
@@ -144,8 +142,6 @@ print(roo.get_pouch_contents())
 # # my_list.append(2)
 # # print(f"my_list: {my_list}")
 # # print(f"my_second_list: {my_second_list}")
-
-
 
 
 # nadal = Animal(name="Nadal", age=18)
