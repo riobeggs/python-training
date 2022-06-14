@@ -1000,7 +1000,7 @@ gtjscincktlwwkkf
 wtebigbaythklkbd"""
 strings = strings.split("\n")
 vowels = ["a", "e", "i", "o", "u"]
-disallowed = ["ab", "cd", "pq", "xy"]
+disallowed_words = ["ab", "cd", "pq", "xy"]
 nice_strings = 0
 
 # part 1
@@ -1010,27 +1010,22 @@ def found_3_vowels(letter, amount_of_vowels):
     if amount_of_vowels < 3:
         if letter in vowels:
             amount_of_vowels += 1
-
-            if amount_of_vowels >= 3:
-                return True
+    return amount_of_vowels
 
 
 def disallowed_checker(word):
-    if disallowed[0] in word:
-        return True
-    if disallowed[1] in word:
-        return True
-    if disallowed[2] in word:
-        return True
-    if disallowed[3] in word:
-        return True
+    for disallowed in disallowed_words:
+        if disallowed in word:
+            return True
+
+    return False
 
 
 def double_letter_checker(letter, letter_pos, string_check):
     if letter_pos == 1:
-        return None
-    if letter == string_check[letter_pos - 2]:
-        return True
+        return False
+
+    return letter == string_check[letter_pos - 2]
 
 
 def run(nice_strings):
@@ -1040,27 +1035,28 @@ def run(nice_strings):
         nice_string_check = []
         letter_pos = 0
 
+        if disallowed_checker(word):
+            continue
+                    
         for letter in word:
             string_check.append(letter)
             letter_pos += 1
 
-            if not "3 vowels present" in nice_string_check:
-                if found_3_vowels(letter, amount_of_vowels) == True:
+            if "3 vowels present" in nice_string_check:
+                pass
+            
+            else:
+                amount_of_vowels = found_3_vowels(letter, amount_of_vowels)
+                if amount_of_vowels == 3:
                     nice_string_check.append("3 vowels present")
+                    
+            if "double letter present" in nice_string_check:
+                pass
+            
+            elif double_letter_checker(letter, letter_pos, string_check):
+                nice_string_check.append("double letter present")
 
-            if disallowed_checker(word) == None:
-                if "no disallowed strings present" in nice_string_check:
-                    pass
-                else:
-                    nice_string_check.append("no disallowed strings present")
-
-            if double_letter_checker(letter, letter_pos, string_check) == True:
-                if "double letter present" in nice_string_check:
-                    pass
-                else:
-                    nice_string_check.append("double letter present")
-
-        if len(nice_string_check) == 3:
+        if len(nice_string_check) == 2:
             nice_strings += 1
 
     print(nice_strings)
