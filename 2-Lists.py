@@ -44,7 +44,7 @@ def example_2() -> None:
 
 def example_3() -> None:
     """Looped logic.
-    
+
     Only print strings.
     """
     print("Example 3")
@@ -82,8 +82,7 @@ def example_4() -> None:
 
 
 def example_5() -> None:
-    """Getting values.
-    """
+    """Getting values."""
     print("Example 5")
     numbered_list = [1, 2, 3]
     print(f"numbered_list: {numbered_list}")
@@ -95,8 +94,7 @@ def example_5() -> None:
 
 
 def example_6() -> None:
-    """Removing values.
-    """
+    """Removing values."""
     print("Example 6")
     numbered_list = [1, 2, 3]
     print(f"numbered_list: {numbered_list}")
@@ -113,8 +111,7 @@ def example_6() -> None:
 
 
 def example_7() -> None:
-    """Removing non-existent values.
-    """
+    """Removing non-existent values."""
     print("Example 7")
     numbered_list = [1, 2, 3]
     print(f"numbered_list: {numbered_list}")
@@ -141,8 +138,7 @@ def example_7() -> None:
 
 
 def example_8() -> None:
-    """Lists are MUTABLE (subject to change).
-    """
+    """Lists are MUTABLE (subject to change)."""
     print("Example 8")
     numbered_list = [1, 2, 3]
     print(f"numbered_list: {numbered_list}")
@@ -175,8 +171,7 @@ def example_8() -> None:
 
 
 def example_9() -> None:
-    """Lists are MUTABLE (subject to change).
-    """
+    """Lists are MUTABLE (subject to change)."""
     print("Example 9")
     numbered_list = [1, 2, 3]
     print(f"numbered_list: {numbered_list}")
@@ -207,7 +202,7 @@ def example_9() -> None:
 
 def example_10() -> None:
     """is vs ==
-    
+
     When we assign an existing list to a variable, it is like we have
     given that list two names.
     a = []
@@ -253,7 +248,7 @@ def example_10() -> None:
 def example_11():
     """is vs ==
     What happens we we change objects which are the same?
-    
+
     When we assign an existing list to a variable, it is like we have
     given that list two names.
     a = []

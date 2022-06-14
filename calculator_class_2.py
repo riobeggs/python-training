@@ -90,7 +90,7 @@ class Equation:
 
     def set_number_one(self) -> "Equation":
         """Sets number one of our equation.
-        
+
         Self is a fun thing to return."""
         while True:
             number_one = input("First number: ")
@@ -103,7 +103,7 @@ class Equation:
 
     def set_number_two(self) -> "Equation":
         """Sets number two of our equation.
-        
+
         Self is a fun thing to return."""
         while True:
             number_two = input("Second number: ")
@@ -115,11 +115,11 @@ class Equation:
             return self
 
     def _convert_to_float(self, number: Any) -> Union[float, None]:
-        """As this class is never called externally, we prefix it with an "_". 
-        
+        """As this class is never called externally, we prefix it with an "_".
+
         Attempts to convert a number to a float.
 
-        Returns None if no conversion. 
+        Returns None if no conversion.
         Returns float if conversion is successful.
         """
         converted = None

@@ -9,8 +9,8 @@ def floor_calc():
         if i == "(":
             floor = floor + 1
         if i == ")":
-            floor = floor - 1 
-    
+            floor = floor - 1
+
     return floor
 
 
@@ -27,7 +27,7 @@ def basement():
             loop_number = loop_number + 1
 
         if i == ")":
-            floor = floor - 1 
+            floor = floor - 1
             loop_number = loop_number + 1
 
 

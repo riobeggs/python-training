@@ -1027,7 +1027,7 @@ def disallowed_checker(word):
         return True
     if disallowed[3] in word:
         return True
-    
+
 
 def double_letter_checker(letter, letter_pos, string_check):
     if letter_pos == 1:
@@ -1073,27 +1073,32 @@ def run(nice_strings):
 
 # part 2
 
+
 def split(word):
     return [char for char in word]
+
 
 def checker_1(letter, letter_index, c1, string_check, word_list):
     if letter_index == 0:
         return None
     if letter_index == 1:
         c1.append(string_check[letter_index - 1] + letter)
-        return None    
+        return None
     if letter == string_check[letter_index - 1]:
         if letter == string_check[letter_index - 2]:
             if letter == word_list[letter_index + 1]:
                 return True
             try:
-                c1.remove((string_check[letter_index - 1]) + (string_check[letter_index - 2]))
+                c1.remove(
+                    (string_check[letter_index - 1]) + (string_check[letter_index - 2])
+                )
                 return None
             except:
                 return None
     if string_check[letter_index - 1] + letter in c1:
         return True
-    else: c1.append(string_check[letter_index - 1] + letter)
+    else:
+        c1.append(string_check[letter_index - 1] + letter)
 
 
 def checker_2(letter, letter_index, string_check):
@@ -1118,13 +1123,13 @@ def run2(nice_strings):
             if checker_1(letter, letter_index, c1, string_check, word_list) == True:
                 if "passed checker 1" in nice_string_check:
                     pass
-                else: 
+                else:
                     nice_string_check.append("passed checker 1")
 
             if checker_2(letter, letter_index, string_check) == True:
                 if "passed checker 2" in nice_string_check:
                     pass
-                else: 
+                else:
                     nice_string_check.append("passed checker 2")
 
         if len(nice_string_check) == 2:

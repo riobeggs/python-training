@@ -28,9 +28,11 @@ for move in directions:
         if move == "v":
             first_santa_vertical_position -= 1
 
-        first_santa_coordinates = [first_santa_horizontal_position, first_santa_vertical_position]
-        
-        
+        first_santa_coordinates = [
+            first_santa_horizontal_position,
+            first_santa_vertical_position,
+        ]
+
         if first_santa_coordinates in first_santa_more_than_one_present:
             m += 1
             continue
@@ -52,7 +54,6 @@ for move in directions:
         m += 1
         continue
 
-
     if m % 2 == 0:
         if move == ">":
             second_santa_horizontal_position += 1
@@ -64,8 +65,11 @@ for move in directions:
         if move == "v":
             second_santa_vertical_position -= 1
 
-        second_santa_coordinates = [second_santa_horizontal_position, second_santa_vertical_position]
-        
+        second_santa_coordinates = [
+            second_santa_horizontal_position,
+            second_santa_vertical_position,
+        ]
+
         if second_santa_coordinates in second_santa_more_than_one_present:
             m += 1
             continue
@@ -88,4 +92,11 @@ for move in directions:
         continue
 
 
-print(len(first_santa_more_than_one_present + first_santa_one_present + second_santa_more_than_one_present + second_santa_one_present))
+print(
+    len(
+        first_santa_more_than_one_present
+        + first_santa_one_present
+        + second_santa_more_than_one_present
+        + second_santa_one_present
+    )
+)

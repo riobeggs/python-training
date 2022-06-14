@@ -1007,7 +1007,7 @@ ribbon_list = []
 def find_paper_needed():
     for dimensions in line:
         side = dimensions.split("x")
-        
+
         l, w, h = side[0], side[1], side[2]
         l = int(l)
         w = int(w)
@@ -1017,17 +1017,17 @@ def find_paper_needed():
 
         if (l * w) <= (w * h):
             if (l * w) <= (h * l):
-                slack = (l * w)
+                slack = l * w
 
         if (w * h) <= (h * l):
             if (w * h) <= (l * w):
-                slack = (w * h)
+                slack = w * h
 
         if (h * l) <= (l * w):
             if (h * l) <= (w * h):
-                slack = (h * l)
+                slack = h * l
 
-        paper_needed = (area + slack)
+        paper_needed = area + slack
         paper_list.append(paper_needed)
 
     total_paper_needed = sum(paper_list)
@@ -1038,29 +1038,29 @@ def find_paper_needed():
 def find_ribbon_needed():
     for dimensions in line:
         side = dimensions.split("x")
-        
+
         l, w, h = side[0], side[1], side[2]
         l = int(l)
         w = int(w)
         h = int(h)
 
-        bow = (l * w * h)
+        bow = l * w * h
 
         if (l * w) <= (w * h):
             if (l * w) <= (h * l):
-                ribbon = (l + l + w + w)
+                ribbon = l + l + w + w
 
         if (w * h) <= (h * l):
             if (w * h) <= (l * w):
-                ribbon = (w + w + h + h) 
+                ribbon = w + w + h + h
 
         if (h * l) <= (l * w):
             if (h * l) <= (w * h):
-                ribbon = (h + h + l + l)
+                ribbon = h + h + l + l
 
-        ribbon_needed = (bow + ribbon)
+        ribbon_needed = bow + ribbon
         ribbon_list.append(ribbon_needed)
-    
+
     total_ribbon_needed = sum(ribbon_list)
     print("Ribbon needed:", total_ribbon_needed)
 
