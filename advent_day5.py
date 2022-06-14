@@ -1133,4 +1133,4 @@ def run2(nice_strings):
     print(nice_strings)
 
 
-run2(nice_strings)
+run(nice_strings)
