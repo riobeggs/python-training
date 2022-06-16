@@ -1,6 +1,12 @@
 import os
 
 
+def grid_base(grid : list) -> int:
+    for x in range(1000):
+        for y in range(1000):
+            return grid.append(0)
+
+
 def input_list() -> list:
     input_ = open("/Users/riobeggs/Downloads/day6.txt", "r")
     input_ = input_.read().split("\n")
@@ -8,38 +14,40 @@ def input_list() -> list:
     return input_
 
 
-def find_area_of_coordinates(coordinates : list) -> int:
-    x1, y1, x2, y2 = coordinates[0], coordinates[1], coordinates[2], coordinates[3]
+def int_coordinate_list(instructions : list, grid : list) -> None:
+    x1, y1, x2, y2 = instructions[0], instructions[1], instructions[2], instructions[3]
     x1, y1, x2, y2 = int(x1), int(y1), int(x2), int(y2)
-    x_axis = len(range(x1, x2 + 1))
-    y_axis = len(range(y1, y2 + 1))
-    area = x_axis * y_axis
-    return area
+
+    for row in grid[x1 : x2]:
+        grid[row] = 1
+
+    # coordinates = [x1, y1, x2, y2]
+    # return coordinates
 
 
 def lights_on(input_ : list) -> str:
     lights_on = 0
+    grid = []
+
+    grid_base(grid)
+
     for instructions in input_:
         if "turn on" in instructions:
             instructions = instructions.replace("turn on ", "").replace(" through ", ",")
-            coordinates = instructions.split(",")
-            area = find_area_of_coordinates(coordinates)
-            lights_on += area
+            instructions = instructions.split(",")
+            coordinates = int_coordinate_list(instructions, grid)
             continue
             
-        if "turn off" in instructions:
-            instructions = instructions.replace("turn off ", "").replace(" through ", ",")
-            coordinates = instructions.split(",")
-            area = find_area_of_coordinates(coordinates)
-            lights_on -= area
-            continue
+        # if "turn off" in instructions:
+        #     instructions = instructions.replace("turn off ", "").replace(" through ", ",")
+        #     instructions = instructions.split(",")
+        #     coordinates = int_coordinate_list(instructions, grid)
+        #     continue
 
         # if "toggle" in instructions:
         #     instructions = instructions.replace("toggle ", "").replace(" through ", ",")
         #     coordinates = instructions.split(",")
-        #     area = find_area_of_coordinates(coordinates)
-        #     lights_on -= area
-        #     continue            
+        
 
     return lights_on
 
