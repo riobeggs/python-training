@@ -1,10 +1,14 @@
 import os
 
 
-def grid_base(grid : list) -> int:
+def grid_base() -> list:
+    grid = []
+
     for x in range(1000):
         for y in range(1000):
-            return grid.append(0)
+            grid.append(0)
+
+    return grid
 
 
 def input_list() -> list:
@@ -18,8 +22,7 @@ def int_coordinate_list(instructions : list, grid : list) -> None:
     x1, y1, x2, y2 = instructions[0], instructions[1], instructions[2], instructions[3]
     x1, y1, x2, y2 = int(x1), int(y1), int(x2), int(y2)
 
-    for row in grid[x1 : x2]:
-        grid[row] = 1
+    # grid[x1 : x2] == 1
 
     # coordinates = [x1, y1, x2, y2]
     # return coordinates
@@ -27,16 +30,29 @@ def int_coordinate_list(instructions : list, grid : list) -> None:
 
 def lights_on(input_ : list) -> str:
     lights_on = 0
-    grid = []
 
-    grid_base(grid)
+    grid = grid_base()
 
     for instructions in input_:
         if "turn on" in instructions:
             instructions = instructions.replace("turn on ", "").replace(" through ", ",")
             instructions = instructions.split(",")
-            coordinates = int_coordinate_list(instructions, grid)
-            continue
+
+            x1, y1, x2, y2 = instructions[0], instructions[1], instructions[2], instructions[3]
+            x1, y1, x2, y2 = int(x1), int(y1), int(x2), int(y2)
+
+            for i in range(len(grid)):
+                if i >= x1:
+                    if i >= x2 + 1:
+                        continue
+                    grid[i] = 1
+            
+            print(grid)
+            #     grid[i] == 1
+            # grid == 1
+            # print(grid[x1 : x2 + 1])
+            # coordinates = int_coordinate_list(instructions, grid)
+            # continue
             
         # if "turn off" in instructions:
         #     instructions = instructions.replace("turn off ", "").replace(" through ", ",")
