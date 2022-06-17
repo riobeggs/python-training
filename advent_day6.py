@@ -41,13 +41,15 @@ def lights_on(input_ : list) -> str:
             x1, y1, x2, y2 = instructions[0], instructions[1], instructions[2], instructions[3]
             x1, y1, x2, y2 = int(x1), int(y1), int(x2), int(y2)
 
-            for i in range(len(grid)):
-                if i >= x1:
-                    if i >= x2 + 1:
-                        continue
-                    grid[i] = 1
+            row = grid[x1 : x2 + 1] = [1] * ((x2 - x1 + 1))
+            print(len(row))
+            # for i in range(len(grid)):
+            #     if i >= x1:
+            #         if i >= x2 + 1:
+            #             continue
+            #         grid[i] = 1
             
-            print(grid)
+            # print(grid)
             #     grid[i] == 1
             # grid == 1
             # print(grid[x1 : x2 + 1])
