@@ -23,10 +23,22 @@
 
 
 
-grid = [[0, 0 ,0,], [0 ,0 ,0], [0, 0, 0]]
+def grid_base() -> list:
+    grid = []
+
+    for x in range(3):
+        row = []
+        for y in range(3):
+            row.append(0)
+        grid.extend([row])
+
+    return grid
 
 # outcome should be 
 # grid = [[0, 1, 1], [1, 1, 0], [0 ,0 ,0]]
+
+grid = grid_base()
+print(grid)
 
 coordinates = [0,1,1,1]
 x1 = coordinates[0]
@@ -35,11 +47,8 @@ x2 = coordinates[2]
 y2 = coordinates[3]
 
 for x in range(x1, x2 + 1):
-    for y in range(y1 + x, y2 + 1):
+    for y in range(y1, y2 + 1):
         grid[x][y] = 1
-        x += 1
-
-grid[x][y] = 1
 
 print(grid)
 
