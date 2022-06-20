@@ -32,7 +32,10 @@ def AND(line : str, variable_list : list, value_list : list) -> None:
             variable_0 = variable[0]
             variable_0 = value_list[variable_list.index(variable_0)]            
         else:
-            variable_0 = int(variable[0])    
+            variable_0 = int(variable[0])
+    else:
+        variable_0 = variable[0]
+        variable_0 = value_list[variable_list.index(variable_0)]    
             
     if variable[1] not in variable_list:
         if is_integer(variable[1]) == False:        
@@ -41,18 +44,22 @@ def AND(line : str, variable_list : list, value_list : list) -> None:
             variable_1 = variable[1]
             variable_1 = value_list[variable_list.index(variable_1)]
         else:
-            variable_1 = int(variable[1])    
+            variable_1 = int(variable[1]) 
+    else:
+        variable_1 = variable[1]
+        variable_1 = value_list[variable_list.index(variable_1)]
 
     if variable[2] not in variable_list:
         if is_integer(variable[2]) == False:  
             variable_list.append(variable[2]) 
             value_list.append(None) 
             variable_2 = variable[2]
+            variable_2 = value_list[variable_list.index(variable_2)]
         else:
-            variable_2 = int(variable[2])    
+            variable_2 = int(variable[2])   
 
     try:
-        value_list[variable_list.index(variable_2)] = variable_0 & variable_1
+        value_list[variable_list.index(variable[2])] = variable_0 & variable_1
     except:
         pass
 
@@ -62,28 +69,42 @@ def OR(line : str, variable_list : list, value_list : list) -> None:
     variable = variable.split(",")\
 
     if variable[0] not in variable_list:
-        variable_list.append(variable[0])
-        value_list.append(None)
+        if is_integer(variable[0]) == False:
+            variable_list.append(variable[0])
+            value_list.append(None)
+            variable_0 = variable[0]
+            variable_0 = value_list[variable_list.index(variable_0)]            
+        else:
+            variable_0 = int(variable[0])
+    else:
+        variable_0 = variable[0]
+        variable_0 = value_list[variable_list.index(variable_0)]    
+            
     if variable[1] not in variable_list:
-        variable_list.append(variable[1])
-        value_list.append(None)    
+        if is_integer(variable[1]) == False:        
+            variable_list.append(variable[1])
+            value_list.append(None)    
+            variable_1 = variable[1]
+            variable_1 = value_list[variable_list.index(variable_1)]
+        else:
+            variable_1 = int(variable[1]) 
+    else:
+        variable_1 = variable[1]
+        variable_1 = value_list[variable_list.index(variable_1)]
+
     if variable[2] not in variable_list:
-        variable_list.append(variable[2]) 
-        value_list.append(None) 
-
-    variable_0 = variable[0]
-    variable_0 = value_list[variable_list.index(variable_0)]
-
-    variable_1 = variable[1]
-    variable_1 = value_list[variable_list.index(variable_1)]
-
-    variable_2 = variable[2]
-    variable_2 = value_list[variable_list.index(variable_2)]
+        if is_integer(variable[2]) == False:  
+            variable_list.append(variable[2]) 
+            value_list.append(None) 
+            variable_2 = variable[2]
+            variable_2 = value_list[variable_list.index(variable_2)]
+        else:
+            variable_2 = int(variable[2])   
 
     try:
-        variable_2 == variable_0 | variable_1
+        value_list[variable_list.index(variable[2])] = variable_0 | variable_1
     except:
-        pass   
+        pass 
 
 
 def NOT(line : str, variable_list : list, value_list : list) -> None:
@@ -91,20 +112,32 @@ def NOT(line : str, variable_list : list, value_list : list) -> None:
     variable = variable.split(",") 
 
     if variable[0] not in variable_list:
-        variable_list.append(variable[0])
-        value_list.append(None)
+        if is_integer(variable[0]) == False:
+            variable_list.append(variable[0])
+            value_list.append(None)
+            variable_0 = variable[0]
+            variable_0 = value_list[variable_list.index(variable_0)]            
+        else:
+            variable_0 = int(variable[0])
+    else:
+        variable_0 = variable[0]
+        variable_0 = value_list[variable_list.index(variable_0)]
+
+
     if variable[1] not in variable_list:
-        variable_list.append(variable[1])
-        value_list.append(None)
-
-    variable_0 = variable[0]
-    variable_0 = value_list[variable_list.index(variable_0)]
-
-    variable_1 = variable[1]
-    variable_1 = value_list[variable_list.index(variable_1)]
+        if is_integer(variable[1]) == False:        
+            variable_list.append(variable[1])
+            value_list.append(None)    
+            variable_1 = variable[1]
+            variable_1 = value_list[variable_list.index(variable_1)]
+        else:
+            variable_1 = int(variable[1]) 
+    else:
+        variable_1 = variable[1]
+        variable_1 = value_list[variable_list.index(variable_1)]
 
     try:
-        variable_1 == ~variable_0  
+        value_list[variable_list.index(variable[1])] = ~variable_0
     except:
         pass
 
@@ -114,22 +147,33 @@ def LSHIFT(line : str, variable_list : list, value_list : list) -> None:
     variable = variable.split(",")
 
     if variable[0] not in variable_list:
-        variable_list.append(variable[0])
-        value_list.append(None)
-    if variable[2] not in variable_list:
-        variable_list.append(variable[2])
-        value_list.append(None)    
+        if is_integer(variable[0]) == False:
+            variable_list.append(variable[0])
+            value_list.append(None)
+            variable_0 = variable[0]
+            variable_0 = value_list[variable_list.index(variable_0)]            
+        else:
+            variable_0 = int(variable[0])
+    else:
+        variable_0 = variable[0]
+        variable_0 = value_list[variable_list.index(variable_0)] 
 
-    variable_0 = variable[0]
-    variable_0 = value_list[variable_list.index(variable_0)]
+    if variable[2] not in variable_list:
+        if is_integer(variable[2]) == False:
+            variable_list.append(variable[2])
+            value_list.append(None)
+            variable_2 = variable[2]
+            variable_2 = value_list[variable_list.index(variable_2)]            
+        else:
+            variable_2 = int(variable[2])
+    else:
+        variable_2 = variable[2]
+        variable_2 = value_list[variable_list.index(variable_2)]    
     
     variable_1 = int(variable[1])
 
-    variable_2 = variable[2]
-    variable_2 = value_list[variable_list.index(variable_2)]
-
     try:
-        variable_2 == variable_0 << variable_1   
+        value_list[variable_list.index(variable[2])] = variable_0 << variable_1   
     except:
         pass
 
@@ -139,22 +183,33 @@ def RSHIFT(line : str, variable_list : list, value_list : list) -> None:
     variable = variable.split(",")
 
     if variable[0] not in variable_list:
-        variable_list.append(variable[0])
-        value_list.append(None)
-    if variable[2] not in variable_list:
-        variable_list.append(variable[2])
-        value_list.append(None)    
+        if is_integer(variable[0]) == False:
+            variable_list.append(variable[0])
+            value_list.append(None)
+            variable_0 = variable[0]
+            variable_0 = value_list[variable_list.index(variable_0)]            
+        else:
+            variable_0 = int(variable[0])
+    else:
+        variable_0 = variable[0]
+        variable_0 = value_list[variable_list.index(variable_0)] 
 
-    variable_0 = variable[0]
-    variable_0 = value_list[variable_list.index(variable_0)]
+    if variable[2] not in variable_list:
+        if is_integer(variable[2]) == False:
+            variable_list.append(variable[2])
+            value_list.append(None)
+            variable_2 = variable[2]
+            variable_2 = value_list[variable_list.index(variable_2)]            
+        else:
+            variable_2 = int(variable[2])
+    else:
+        variable_2 = variable[2]
+        variable_2 = value_list[variable_list.index(variable_2)]    
     
     variable_1 = int(variable[1])
 
-    variable_2 = variable[2]
-    variable_2 = value_list[variable_list.index(variable_2)]
-
     try:
-        variable_2 == variable_0 >> variable_1   
+        value_list[variable_list.index(variable[2])] = variable_0 >> variable_1   
     except:
         pass
 
@@ -190,7 +245,7 @@ def PROVIDED(line : str, variable_list : list, value_list : list) -> None:
         pass
 
 
-def run(input_ : list, variable_list : list, value_list :list) -> None:
+def run(input_ : list, variable_list : list, value_list :list) -> list:
     while None in value_list:
         if len(value_list) == 1:
             value_list = value_list[1:]
@@ -219,10 +274,7 @@ def run(input_ : list, variable_list : list, value_list :list) -> None:
             PROVIDED(line, variable_list, value_list)
             continue
 
-
-
-    print(len(value_list))
-    print(len(variable_list))
+    return value_list
 
 
 def wire_a(variable_list : list, value_list : list) -> int:
@@ -232,11 +284,14 @@ def wire_a(variable_list : list, value_list : list) -> int:
 
 
 def main() -> None:
-    input_ = input_list()
+    # input_ = input_list()
+    input_ = ['123 -> x', '456 -> y', 'x AND y -> d', 'x OR y -> e', 'x LSHIFT 2 -> f', 'y RSHIFT 2 -> g', 'NOT x -> h', 'NOT y -> i']
     variable_list = []
     value_list = [None]
-    run(input_, variable_list, value_list)
-    print(wire_a(variable_list, value_list))
+    value_list = run(input_, variable_list, value_list)
+    print(variable_list)
+    print(value_list)
+    # print(wire_a(variable_list, value_list))
 
 
 if __name__ == "__main__":
