@@ -160,18 +160,20 @@ class Bitwise_operators:
         pass
 
 
-def wire_a() -> int:
-    pass
+def wire_a(variable_list : list, value_list : list) -> int:
+    a_index = variable_list.index("a")
+
+    return value_list[a_index]
 
 
 def main() -> None:
     input_ = input_list()
     variable_list = make_variable_list(input_)
     value_list = make_value_list(variable_list)
-    for instruction in input_:
-        Bitwise_operators()
+    # for instruction in input_:
+    #     Bitwise_operators()
 
-    print(wire_a())
+    print(wire_a(variable_list, value_list))
 
 
 if __name__ == "__main__":
