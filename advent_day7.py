@@ -9,6 +9,7 @@ import os
 def input_list() -> list:
     input_ = open("/Users/riobeggs/Downloads/day7.txt", "r")
     input_ = input_.read().split("\n")
+    input_ = input_[:-1]
     return input_
 
 
@@ -19,13 +20,11 @@ def extract_variable(line : str) -> list:
 
         return variable
 
-
     if "OR" in line:
         variable = line.replace("OR", ",").replace("->", ",").replace(" ", "")
         variable = variable.split(",")
 
         return variable
-
 
     if "NOT" in line:
         variable = line.replace("NOT", "").replace("->", ",").replace(" ", "")
@@ -33,24 +32,17 @@ def extract_variable(line : str) -> list:
 
         return variable
 
-
     if "LSHIFT" in line:        
         variable = line.replace("LSHIFT", ",").replace("->", ",").replace(" ", "")
         variable = variable.split(",")
 
         return variable
 
-
     if "RSHIFT" in line:        
         variable = line.replace("RSHIFT", ",").replace("->", ",").replace(" ", "")
         variable = variable.split(",")
 
         return variable
-
-    
-    variable = variable.replace("->", ",").replace(" ", "")
-
-    return variable
 
 
 def make_variable_list(input_ : list) -> list:
@@ -68,7 +60,8 @@ def make_variable_list(input_ : list) -> list:
 
             if variable[2] not in variable_list:
                 variable_list.append(variable[2]) 
-    
+            
+            continue    
 
         if "OR" in line:
             variable = extract_variable(line)
@@ -81,7 +74,8 @@ def make_variable_list(input_ : list) -> list:
 
             if variable[2] not in variable_list:
                 variable_list.append(variable[2]) 
-
+            
+            continue
 
         if "NOT" in line:
             variable = extract_variable(line)   
@@ -90,8 +84,9 @@ def make_variable_list(input_ : list) -> list:
                 variable_list.append(variable[0])
             
             if variable[1] not in variable_list:
-                variable_list.append(variable[1])  
-
+                variable_list.append(variable[1])
+            
+            continue 
 
         if "LSHIFT" in line:
             variable = extract_variable(line)
@@ -101,8 +96,8 @@ def make_variable_list(input_ : list) -> list:
             
             if variable[2] not in variable_list:
                 variable_list.append(variable[2])
-            pass
-
+            
+            continue
 
         if "RSHIFT" in line:
             variable = extract_variable(line)
@@ -112,7 +107,26 @@ def make_variable_list(input_ : list) -> list:
             
             if variable[2] not in variable_list:
                 variable_list.append(variable[2]) 
+            
+            continue
 
+        else:
+            variable = line.replace("->", ",").replace(" ", "")  
+            variable = variable.split(",") 
+
+            try:
+                int(variable[0])
+            except:
+                if variable[0] not in variable_list:
+                    variable_list.append(variable[0])
+
+            try:
+                int(variable[1])
+            except:            
+                if variable[1] not in variable_list:
+                    variable_list.append(variable[1])
+            
+            continue
 
     return variable_list
 
