@@ -1,6 +1,7 @@
 import os
 
 
+# part 1
 def input_list() -> list:
     input_ = open("/Users/riobeggs/Downloads/day7.txt", "r")
     input_ = input_.read().split("\n")
@@ -241,7 +242,7 @@ def PROVIDED(line : str, variable_list : list, value_list : list) -> None:
             value_list.append(None)   
 
 
-def run(input_ : list, variable_list : list, value_list :list) -> list:
+def run1(input_ : list, variable_list : list, value_list :list) -> list:
     while None in value_list:
         if len(value_list) == 1:
             value_list = value_list[1:]
@@ -273,7 +274,49 @@ def run(input_ : list, variable_list : list, value_list :list) -> list:
     return value_list
 
 
-def wire_a(variable_list : list, value_list : list) -> int:
+def wire_a1(variable_list : list, value_list : list) -> int:
+    a_index = variable_list.index("a")
+
+    return value_list[a_index]
+
+
+#part 2
+def run2(input_ : list, variable_list : list, value_list :list) -> list:
+    while None in value_list:
+        if len(value_list) == 2:
+            value_list = value_list[1:]
+
+        for line in input_:
+            if line == "44430 -> b":
+                continue
+
+            if "AND" in line:
+                AND(line, variable_list, value_list)
+                continue    
+
+            if "OR" in line:
+                OR(line, variable_list, value_list)        
+                continue    
+
+            if "NOT" in line:
+                NOT(line, variable_list, value_list)
+                continue    
+
+            if "LSHIFT" in line:        
+                LSHIFT(line, variable_list, value_list)
+                continue 
+
+            if "RSHIFT" in line:        
+                RSHIFT(line, variable_list, value_list)
+                continue
+
+            PROVIDED(line, variable_list, value_list)
+            continue
+
+    return value_list
+
+
+def wire_a2(variable_list : list, value_list : list) -> int:
     a_index = variable_list.index("a")
 
     return value_list[a_index]
@@ -281,10 +324,18 @@ def wire_a(variable_list : list, value_list : list) -> int:
 
 def main() -> None:
     input_ = input_list()
-    variable_list = []
-    value_list = [None]
-    value_list = run(input_, variable_list, value_list)
-    print(wire_a(variable_list, value_list))
+
+    variable_list1 = []
+    value_list1 = [None]
+    value_list1 = run1(input_, variable_list1, value_list1)
+    wire_a = wire_a1(variable_list1, value_list1)
+    print(wire_a)
+
+    variable_list2 = ["b"]
+    value_list2 = [None, wire_a]
+    value_list2 = run2(input_, variable_list2, value_list2)
+    wire_a = wire_a2(variable_list2, value_list2)
+    print(wire_a)
 
 
 if __name__ == "__main__":
