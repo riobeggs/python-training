@@ -17,7 +17,6 @@ def extract_variable(line : str) -> list:
     if "AND" in line:
         variable = line.replace("AND", ",").replace("->", ",").replace(" ", "")
         variable = variable.split(",")
-
         return variable
 
     if "OR" in line:
@@ -135,29 +134,81 @@ def make_value_list(variable_list : list) -> list:
     value_list = []
 
     for variable in variable_list:
-        value_list.append(0)
+        value_list.append(None)
 
     return value_list
 
 
+def recursion_loop(input_ : list, variable_list : list, value_list : list) -> None:
+    for line in input_:
+        pass
+
+
 class Bitwise_operators:
-    def __init__(self) -> None:
-        pass
+    def __init__(self, line, value_list, variable_list) -> None:
+        self.line = line
+        self.value_list = value_list
+        self.variable_list = variable_list
 
-    def AND(input_) -> None:
-        pass
 
-    def OR(input_) -> None:
-        pass
+    def AND(self) -> None:
+        variable_0 = self.line[0]
+        variable_0 = self.value_list[self.variable_list.index(variable_0)]
 
-    def NOT(input_) -> None:
-        pass
+        variable_1 = self.line[1]
+        variable_1 = self.value_list[self.variable_list.index(variable_1)]
 
-    def LSHIFT(input_) -> None:
-        pass
+        variable_2 = self.line[2]
+        variable_2 = self.value_list[self.variable_list.index(variable_2)]
 
-    def RSHIFT(input_) -> None:
-        pass
+        variable_2 += variable_0 & variable_1
+
+
+    def OR(self) -> None:
+        variable_0 = self.line[0]
+        variable_0 = self.value_list[self.variable_list.index(variable_0)]
+
+        variable_1 = self.line[1]
+        variable_1 = self.value_list[self.variable_list.index(variable_1)]
+
+        variable_2 = self.line[2]
+        variable_2 = self.value_list[self.variable_list.index(variable_2)]
+
+        variable_2 += variable_0 | variable_1
+
+
+    def NOT(self) -> None:
+        variable_0 = self.line[0]
+        variable_0 = self.value_list[self.variable_list.index(variable_0)]
+
+        variable_1 = self.line[1]
+        variable_1 = self.value_list[self.variable_list.index(variable_1)]
+
+        variable_1 += ~variable_0
+
+
+    def LSHIFT(self) -> None:
+        variable_0 = self.line[0]
+        variable_0 = self.value_list[self.variable_list.index(variable_0)]
+
+        variable_1 = int(self.line[1])
+
+        variable_2 = self.line[2]
+        variable_2 = self.value_list[self.variable_list.index(variable_2)]
+
+        variable_2 = variable_0 << variable_1    
+
+
+    def RSHIFT(self) -> None:
+        variable_0 = self.line[0]
+        variable_0 = self.value_list[self.variable_list.index(variable_0)]
+
+        variable_1 = int(self.line[1])
+
+        variable_2 = self.line[2]
+        variable_2 = self.value_list[self.variable_list.index(variable_2)]
+
+        variable_2 = variable_0 >> variable_1 
 
 
 def wire_a(variable_list : list, value_list : list) -> int:
@@ -168,10 +219,23 @@ def wire_a(variable_list : list, value_list : list) -> int:
 
 def main() -> None:
     input_ = input_list()
+    input_ = ['x AND y -> z']
     variable_list = make_variable_list(input_)
     value_list = make_value_list(variable_list)
-    # for instruction in input_:
-    #     Bitwise_operators()
+    # recursion_loop(input_, variable_list, value_list)
+
+    for line in input_:
+        operators = Bitwise_operators(line=line, value_list=value_list, variable_list=value_list)
+
+        if "AND" in line:
+            variable = line.replace("AND", ",").replace("->", ",").replace(" ", "")
+            variable = variable.split(",")
+            operators.AND()
+
+        
+        
+
+
 
     print(wire_a(variable_list, value_list))
 
