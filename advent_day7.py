@@ -229,7 +229,11 @@ def PROVIDED(line : str, variable_list : list, value_list : list) -> None:
         if variable[0] not in variable_list:
             variable_list.append(variable[0])
             value_list.append(None)
-        pass
+        else:
+            variable_list.append(variable[1])
+            value_list.append(None)
+            value_list[variable_list.index(variable[1])] = value_list[variable_list.index(variable[0])]      
+
 
     try:
         variable_1 = int(variable[1])
@@ -241,8 +245,7 @@ def PROVIDED(line : str, variable_list : list, value_list : list) -> None:
     except:            
         if variable[1] not in variable_list:
             variable_list.append(variable[1])
-            value_list.append(None)
-        pass
+            value_list.append(None)   
 
 
 def run(input_ : list, variable_list : list, value_list :list) -> list:
@@ -285,13 +288,11 @@ def wire_a(variable_list : list, value_list : list) -> int:
 
 def main() -> None:
     # input_ = input_list()
-    input_ = ['123 -> x', '456 -> y', 'x AND y -> d', 'x OR y -> e', 'x LSHIFT 2 -> f', 'y RSHIFT 2 -> g', 'NOT x -> h', 'NOT y -> i']
+    input_ = ['360 -> lx', 'lx -> a']
     variable_list = []
     value_list = [None]
     value_list = run(input_, variable_list, value_list)
-    print(variable_list)
-    print(value_list)
-    # print(wire_a(variable_list, value_list))
+    print(wire_a(variable_list, value_list))
 
 
 if __name__ == "__main__":
