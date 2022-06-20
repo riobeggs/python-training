@@ -1,8 +1,3 @@
-# AND = &
-# OR = |
-# NOT = ~
-# LSHIFT = <<
-# RSHIFT = >>
 import os
 
 
