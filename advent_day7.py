@@ -13,202 +13,216 @@ def input_list() -> list:
     return input_
 
 
-def extract_variable(line : str) -> list:
-    if "AND" in line:
-        variable = line.replace("AND", ",").replace("->", ",").replace(" ", "")
-        variable = variable.split(",")
-        return variable
-
-    if "OR" in line:
-        variable = line.replace("OR", ",").replace("->", ",").replace(" ", "")
-        variable = variable.split(",")
-
-        return variable
-
-    if "NOT" in line:
-        variable = line.replace("NOT", "").replace("->", ",").replace(" ", "")
-        variable = variable.split(",")
-
-        return variable
-
-    if "LSHIFT" in line:        
-        variable = line.replace("LSHIFT", ",").replace("->", ",").replace(" ", "")
-        variable = variable.split(",")
-
-        return variable
-
-    if "RSHIFT" in line:        
-        variable = line.replace("RSHIFT", ",").replace("->", ",").replace(" ", "")
-        variable = variable.split(",")
-
-        return variable
+def is_integer(variable) -> bool:
+    try:
+        variable = int(variable)
+        return True
+    except:
+        return False
 
 
-def make_variable_list(input_ : list) -> list:
-    variable_list = []
-    for line in input_:
+def AND(line : str, variable_list : list, value_list : list) -> None:
+    variable = line.replace("AND", ",").replace("->", ",").replace(" ", "")
+    variable = variable.split(",")
 
-        if "AND" in line:
-            variable = extract_variable(line)
-
-            if variable[0] not in variable_list:
-                variable_list.append(variable[0])
-            
-            if variable[1] not in variable_list:
-                variable_list.append(variable[1])      
-
-            if variable[2] not in variable_list:
-                variable_list.append(variable[2]) 
-            
-            continue    
-
-        if "OR" in line:
-            variable = extract_variable(line)
-
-            if variable[0] not in variable_list:
-                variable_list.append(variable[0])
-            
-            if variable[1] not in variable_list:
-                variable_list.append(variable[1])      
-
-            if variable[2] not in variable_list:
-                variable_list.append(variable[2]) 
-            
-            continue
-
-        if "NOT" in line:
-            variable = extract_variable(line)   
-
-            if variable[0] not in variable_list:
-                variable_list.append(variable[0])
-            
-            if variable[1] not in variable_list:
-                variable_list.append(variable[1])
-            
-            continue 
-
-        if "LSHIFT" in line:
-            variable = extract_variable(line)
-
-            if variable[0] not in variable_list:
-                variable_list.append(variable[0])
-            
-            if variable[2] not in variable_list:
-                variable_list.append(variable[2])
-            
-            continue
-
-        if "RSHIFT" in line:
-            variable = extract_variable(line)
-
-            if variable[0] not in variable_list:
-                variable_list.append(variable[0])
-            
-            if variable[2] not in variable_list:
-                variable_list.append(variable[2]) 
-            
-            continue
-
+    if variable[0] not in variable_list:
+        if is_integer(variable[0]) == False:
+            variable_list.append(variable[0])
+            value_list.append(None)
+            variable_0 = variable[0]
+            variable_0 = value_list[variable_list.index(variable_0)]            
         else:
-            variable = line.replace("->", ",").replace(" ", "")  
-            variable = variable.split(",") 
-
-            try:
-                int(variable[0])
-            except:
-                if variable[0] not in variable_list:
-                    variable_list.append(variable[0])
-
-            try:
-                int(variable[1])
-            except:            
-                if variable[1] not in variable_list:
-                    variable_list.append(variable[1])
+            variable_0 = int(variable[0])    
             
-            continue
+    if variable[1] not in variable_list:
+        if is_integer(variable[1]) == False:        
+            variable_list.append(variable[1])
+            value_list.append(None)    
+            variable_1 = variable[1]
+            variable_1 = value_list[variable_list.index(variable_1)]
+        else:
+            variable_1 = int(variable[1])    
 
-    return variable_list
+    if variable[2] not in variable_list:
+        if is_integer(variable[2]) == False:  
+            variable_list.append(variable[2]) 
+            value_list.append(None) 
+            variable_2 = variable[2]
+        else:
+            variable_2 = int(variable[2])    
 
-
-def make_value_list(variable_list : list) -> list:
-    value_list = []
-
-    for variable in variable_list:
-        value_list.append(None)
-
-    return value_list
-
-
-def recursion_loop(input_ : list, variable_list : list, value_list : list) -> None:
-    for line in input_:
+    try:
+        value_list[variable_list.index(variable_2)] = variable_0 & variable_1
+    except:
         pass
 
 
-class Bitwise_operators:
-    def __init__(self, line, value_list, variable_list) -> None:
-        self.line = line
-        self.value_list = value_list
-        self.variable_list = variable_list
+def OR(line : str, variable_list : list, value_list : list) -> None:
+    variable = line.replace("OR", ",").replace("->", ",").replace(" ", "")
+    variable = variable.split(",")\
+
+    if variable[0] not in variable_list:
+        variable_list.append(variable[0])
+        value_list.append(None)
+    if variable[1] not in variable_list:
+        variable_list.append(variable[1])
+        value_list.append(None)    
+    if variable[2] not in variable_list:
+        variable_list.append(variable[2]) 
+        value_list.append(None) 
+
+    variable_0 = variable[0]
+    variable_0 = value_list[variable_list.index(variable_0)]
+
+    variable_1 = variable[1]
+    variable_1 = value_list[variable_list.index(variable_1)]
+
+    variable_2 = variable[2]
+    variable_2 = value_list[variable_list.index(variable_2)]
+
+    try:
+        variable_2 == variable_0 | variable_1
+    except:
+        pass   
 
 
-    def AND(self) -> None:
-        variable_0 = self.line[0]
-        variable_0 = self.value_list[self.variable_list.index(variable_0)]
+def NOT(line : str, variable_list : list, value_list : list) -> None:
+    variable = line.replace("NOT", "").replace("->", ",").replace(" ", "")
+    variable = variable.split(",") 
 
-        variable_1 = self.line[1]
-        variable_1 = self.value_list[self.variable_list.index(variable_1)]
+    if variable[0] not in variable_list:
+        variable_list.append(variable[0])
+        value_list.append(None)
+    if variable[1] not in variable_list:
+        variable_list.append(variable[1])
+        value_list.append(None)
 
-        variable_2 = self.line[2]
-        variable_2 = self.value_list[self.variable_list.index(variable_2)]
+    variable_0 = variable[0]
+    variable_0 = value_list[variable_list.index(variable_0)]
 
-        variable_2 += variable_0 & variable_1
+    variable_1 = variable[1]
+    variable_1 = value_list[variable_list.index(variable_1)]
 
-
-    def OR(self) -> None:
-        variable_0 = self.line[0]
-        variable_0 = self.value_list[self.variable_list.index(variable_0)]
-
-        variable_1 = self.line[1]
-        variable_1 = self.value_list[self.variable_list.index(variable_1)]
-
-        variable_2 = self.line[2]
-        variable_2 = self.value_list[self.variable_list.index(variable_2)]
-
-        variable_2 += variable_0 | variable_1
+    try:
+        variable_1 == ~variable_0  
+    except:
+        pass
 
 
-    def NOT(self) -> None:
-        variable_0 = self.line[0]
-        variable_0 = self.value_list[self.variable_list.index(variable_0)]
+def LSHIFT(line : str, variable_list : list, value_list : list) -> None:
+    variable = line.replace("LSHIFT", ",").replace("->", ",").replace(" ", "")
+    variable = variable.split(",")
 
-        variable_1 = self.line[1]
-        variable_1 = self.value_list[self.variable_list.index(variable_1)]
+    if variable[0] not in variable_list:
+        variable_list.append(variable[0])
+        value_list.append(None)
+    if variable[2] not in variable_list:
+        variable_list.append(variable[2])
+        value_list.append(None)    
 
-        variable_1 += ~variable_0
+    variable_0 = variable[0]
+    variable_0 = value_list[variable_list.index(variable_0)]
+    
+    variable_1 = int(variable[1])
+
+    variable_2 = variable[2]
+    variable_2 = value_list[variable_list.index(variable_2)]
+
+    try:
+        variable_2 == variable_0 << variable_1   
+    except:
+        pass
 
 
-    def LSHIFT(self) -> None:
-        variable_0 = self.line[0]
-        variable_0 = self.value_list[self.variable_list.index(variable_0)]
+def RSHIFT(line : str, variable_list : list, value_list : list) -> None:
+    variable = line.replace("RSHIFT", ",").replace("->", ",").replace(" ", "")
+    variable = variable.split(",")
 
-        variable_1 = int(self.line[1])
+    if variable[0] not in variable_list:
+        variable_list.append(variable[0])
+        value_list.append(None)
+    if variable[2] not in variable_list:
+        variable_list.append(variable[2])
+        value_list.append(None)    
 
-        variable_2 = self.line[2]
-        variable_2 = self.value_list[self.variable_list.index(variable_2)]
+    variable_0 = variable[0]
+    variable_0 = value_list[variable_list.index(variable_0)]
+    
+    variable_1 = int(variable[1])
 
-        variable_2 = variable_0 << variable_1    
+    variable_2 = variable[2]
+    variable_2 = value_list[variable_list.index(variable_2)]
+
+    try:
+        variable_2 == variable_0 >> variable_1   
+    except:
+        pass
 
 
-    def RSHIFT(self) -> None:
-        variable_0 = self.line[0]
-        variable_0 = self.value_list[self.variable_list.index(variable_0)]
+def PROVIDED(line : str, variable_list : list, value_list : list) -> None:
+    variable = line.replace("->", ",").replace(" ", "")  
+    variable = variable.split(",") 
 
-        variable_1 = int(self.line[1])
+    try:
+        variable_0 = int(variable[0])
+        variable_1 = variable[1]
+        if variable_1 not in variable_list:
+            variable_list.append(variable_1)
+            value_list.append(None)
+        value_list[variable_list.index(variable_1)] = variable_0
+    except:
+        if variable[0] not in variable_list:
+            variable_list.append(variable[0])
+            value_list.append(None)
+        pass
 
-        variable_2 = self.line[2]
-        variable_2 = self.value_list[self.variable_list.index(variable_2)]
+    try:
+        variable_1 = int(variable[1])
+        variable_0 = variable[0]
+        if variable_0 not in variable_list:
+            variable_list.append(variable_0)
+            value_list.append(None)
+        value_list[variable_list.index(variable_0)] = variable_1
+    except:            
+        if variable[1] not in variable_list:
+            variable_list.append(variable[1])
+            value_list.append(None)
+        pass
 
-        variable_2 = variable_0 >> variable_1 
+
+def run(input_ : list, variable_list : list, value_list :list) -> None:
+    while None in value_list:
+        if len(value_list) == 1:
+            value_list = value_list[1:]
+
+        for line in input_:
+            if "AND" in line:
+                AND(line, variable_list, value_list)
+                continue    
+
+            if "OR" in line:
+                OR(line, variable_list, value_list)        
+                continue    
+
+            if "NOT" in line:
+                NOT(line, variable_list, value_list)
+                continue    
+
+            if "LSHIFT" in line:        
+                LSHIFT(line, variable_list, value_list)
+                continue 
+
+            if "RSHIFT" in line:        
+                RSHIFT(line, variable_list, value_list)
+                continue
+
+            PROVIDED(line, variable_list, value_list)
+            continue
+
+
+
+    print(len(value_list))
+    print(len(variable_list))
 
 
 def wire_a(variable_list : list, value_list : list) -> int:
@@ -219,24 +233,9 @@ def wire_a(variable_list : list, value_list : list) -> int:
 
 def main() -> None:
     input_ = input_list()
-    input_ = ['x AND y -> z']
-    variable_list = make_variable_list(input_)
-    value_list = make_value_list(variable_list)
-    # recursion_loop(input_, variable_list, value_list)
-
-    for line in input_:
-        operators = Bitwise_operators(line=line, value_list=value_list, variable_list=value_list)
-
-        if "AND" in line:
-            variable = line.replace("AND", ",").replace("->", ",").replace(" ", "")
-            variable = variable.split(",")
-            operators.AND()
-
-        
-        
-
-
-
+    variable_list = []
+    value_list = [None]
+    run(input_, variable_list, value_list)
     print(wire_a(variable_list, value_list))
 
 
