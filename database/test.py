@@ -86,5 +86,32 @@ def connect2():
             print('Database connection closed.')
 
 
+def connect3():
+    """ Connect to the PostgreSQL database server 
+    use a with statement to control db connection"""
+
+    conn_info = {
+            "dbname": "test",
+            "user": "postgres",
+            "password": "postgres"
+        }
+
+        # multi part query
+    query = "SELECT * FROM person"
+
+    # query limited to 1 response
+    query += ' WHERE last_name = \'beggs\';'
+
+    try:
+        with psycopg2.connect(**conn_info) as conn, \
+            conn.cursor() as cur:
+            cur.execute(query)
+            res = cur.fetchall()
+            print(res)
+    
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
+
+
 if __name__ == '__main__':
-    connect()
+    connect3()
