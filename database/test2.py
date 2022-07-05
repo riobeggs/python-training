@@ -2,7 +2,6 @@ import sys
 from sqlalchemy import create_engine, Column, String, Integer, Date
 from sqlalchemy.ext.declarative import declarative_base  
 from sqlalchemy.orm import Session
-from flask_sqlalchemy import SQLAlchemy
 
 
 # constants
