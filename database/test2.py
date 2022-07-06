@@ -66,7 +66,7 @@ def execute_operations(key:str, session) -> None:
 
 
 def create(session:None) -> None:
-    new_first_name = input("\nEnter first name: ")
+    new_first_name = input("Enter first name: ")
     new_first_name = new_first_name.capitalize()
     new_last_name = input("Enter last name: ")
     new_last_name = new_last_name.capitalize()
@@ -94,43 +94,43 @@ def read(session:None) -> None:
     people = session.query(People)
     for person in people:
         print(person.first_name, person.last_name, person.dob)
+        
+    print()
 
 
 def update(session:None) -> None:
-    print("\nTo update a persons data, start by entering the first and last name of the person you wish to update.")
+    print("To update a persons data, start by entering the first and last name of the person you wish to update.")
     print()
 
     prev_first_name = input("Enter previous first name: ")
     prev_first_name = prev_first_name.capitalize()
     prev_last_name = input("Enter previous last name: ")
     prev_last_name = prev_last_name.capitalize()
-    
-    print("\nNow update the person with their new data.\n")
-    print()
-
-    updated_first_name = input("Enter updated first name: ")
-    updated_first_name = updated_first_name.capitalize()
-    updated_last_name = input("Enter updated last name: ")
-    updated_last_name = updated_last_name.capitalize()
-    updated_dob = input("Enter updated date of birth (yyyy-mm-dd): ")
 
     people = session.query(People)
-    updated = False
     for person in people:
         if person.first_name == prev_first_name:
             if person.last_name == prev_last_name:
+                print("\nNow update the person with their new data.\n")
+                print()
+
+                updated_first_name = input("Enter updated first name: ")
+                updated_first_name = updated_first_name.capitalize()
+                updated_last_name = input("Enter updated last name: ")
+                updated_last_name = updated_last_name.capitalize()
+                updated_dob = input("Enter updated date of birth (yyyy-mm-dd): ")
+
                 person.first_name = updated_first_name
                 person.last_name = updated_last_name
                 person.dob = updated_dob
-                updated = True
+                
+                print("Successfully updated")
+                print()
                 session.commit()
+                return
 
-    if updated:
-        print("Successfully updated")
-        print()
-    else:
-        print("Could not update.")
-        print()
+    print("Could not update.")
+    print()
 
 
 def delete(session:None) -> None:
