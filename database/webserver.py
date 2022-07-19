@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 
 
@@ -32,39 +32,32 @@ class People(db.Model):
         self.dob = dob
         
 
-@app.route("/", methods=["GET, POST"])
-@app.route("/home", methods=["POST"])
+@app.route("/", methods=['GET'])
 def home():
-    if request.method == "POST":
-        key = request.form.get("key")
-        return "hello"+key
     return render_template("home.html")
+
+
+@app.route("/create", methods=['GET'])
+def create():
+    return render_template("create.html")
+
+
+@app.route("/read", methods=['GET'])
+def read():
+    people = People.query.order_by(People.last_name).all()
+    return render_template("read.html", people=people)
+
+
+@app.route("/update", methods=['GET'])
+def update():
+    return render_template("update.html")
+
+
+@app.route("/delete", methods=['GET'])
+def delete():
+    return render_template("delete.html")
 
 
 if __name__ == "__main__":
     db.create_all()
     app.run(debug = True)
-
-
-# @app.route("/create")
-# def create():
-#     return render_template("create.html")
-
-
-# @app.route("/read")
-# def read():
-#     return render_template("read.html")
-
-
-# @app.route("/update")
-# def update():
-#     return render_template("update.html")
-
-
-# @app.route("/delete")
-# def delete():
-#     return render_template("delete.html")
-
-
-# if __name__ == "__main__":
-#     app.run(debug=True)
