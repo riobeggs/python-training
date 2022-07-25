@@ -1,30 +1,60 @@
-def input_list() -> list:
-    input_ = open("/Users/riobeggs/Downloads/day8.txt", "r")
-    input_ = input_.read().split("\n")
-    input_ = input_[:-1]
-    return input_
+def non_raw_string_list() -> list:
+    non_raw = open("/Users/riobeggs/Downloads/day8.txt", "r")
+    non_raw = non_raw.read().split("\n")
+    non_raw = non_raw[:-1]
+    return non_raw
 
 
-def character_tuple() -> tuple:
-    characters = ("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z")
+def raw_string_list() -> list:
+    raw = open("/Users/riobeggs/Downloads/day8.txt", "r")
+    raw = raw.read().split("\n")
+    raw = raw[:-1]
+    raw = ["r" + string for string in raw]
+    return raw
+
+
+def character_counter(non_raw) -> int:
+    characters = 0
+    for string in non_raw:
+        index_ = 0
+        for character in string:
+            index_ += 1
+            if index_ == 1:
+                continue
+            if index_ == len(string):
+                continue
+            characters += 1
     return characters
 
 
-def character_amount() -> int:
-    character_amount = 0
+def code_counter(raw) -> int:
+    code = 0
+    for string in raw:
+        code += len(string)
+    return code    
 
 
-def code_amount() -> int:
-    code_amount = 0
+def total(characters, code) -> None:
+    total = code - characters
+    
+    print("\ncharacters =", characters)
+    print("code =", code)
+    print("total =", total)
+    print()
 
 
 def main() -> None:
-    # input_ = input_list()
-    input_ = ['"aaa\"aaa"']
-    characters = character_tuple()
-    for i in input_:
-        print(len(i))
-        print(i)
+    # non_raw = non_raw_string_list()
+    # raw = raw_string_list()
+
+    non_raw = ['""', '"abc"', '"aaa\"aaa"', '"\x27"']
+    raw = [r'""', r'"abc"', r'"aaa\"aaa"', r'"\x27"']
+
+    characters = character_counter(non_raw)
+    code = code_counter(raw)
+
+    total(characters, code)
+
 
 if __name__ == "__main__":
     main()
